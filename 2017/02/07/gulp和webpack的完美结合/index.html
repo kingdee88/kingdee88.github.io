@@ -6,14 +6,33 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Category: 优化 | KD blog</title>
+  <title>gulp和webpack的完美结合 | KD blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="KD blog">
-<meta property="og:url" content="http://yoursite.com/categories/优化/index.html">
+  <meta name="description" content="gulp来实现实时监控文件的变化以及css相关处理webpack则处理js
+包依赖(package.json){
+  &amp;quot;name&amp;quot;: &amp;quot;gulp-temp&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;1.0.0&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;&amp;quot;,
+  &amp;quot;main&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gulp和webpack的完美结合">
+<meta property="og:url" content="http://yoursite.com/2017/02/07/gulp和webpack的完美结合/index.html">
 <meta property="og:site_name" content="KD blog">
+<meta property="og:description" content="gulp来实现实时监控文件的变化以及css相关处理webpack则处理js
+包依赖(package.json){
+  &amp;quot;name&amp;quot;: &amp;quot;gulp-temp&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;1.0.0&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;&amp;quot;,
+  &amp;quot;main&amp;quot">
+<meta property="og:updated_time" content="2017-02-07T07:42:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KD blog">
+<meta name="twitter:title" content="gulp和webpack的完美结合">
+<meta name="twitter:description" content="gulp来实现实时监控文件的变化以及css相关处理webpack则处理js
+包依赖(package.json){
+  &amp;quot;name&amp;quot;: &amp;quot;gulp-temp&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;1.0.0&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;&amp;quot;,
+  &amp;quot;main&amp;quot">
   
     <link rel="alternative" href="/atom.xml" title="KD blog" type="application/atom+xml">
   
@@ -141,36 +160,168 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-gulp和webpack的完美结合" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/07/H5项目常见问题汇总及解决方案/" class="archive-article-date">
-  	<time datetime="2017-02-07T05:39:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/07/H5项目常见问题汇总及解决方案/">H5项目常见问题汇总及解决方案</a>
+    <h1 class="article-title" itemprop="name">
+      gulp和webpack的完美结合
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/02/07/gulp和webpack的完美结合/" class="archive-article-date">
+  	<time datetime="2017-02-07T07:29:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>gulp来实现实时监控文件的变化以及css相关处理<br>webpack则处理js</p>
+<h3 id="包依赖-package-json"><a href="#包依赖-package-json" class="headerlink" title="包依赖(package.json)"></a>包依赖(package.json)</h3><pre><code>{
+  &quot;name&quot;: &quot;gulp-temp&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;babel-core&quot;: &quot;^6.21.0&quot;,
+    &quot;babel-loader&quot;: &quot;^6.2.10&quot;,
+    &quot;babel-preset-es2015&quot;: &quot;^6.18.0&quot;,
+    &quot;gulp&quot;: &quot;^3.9.1&quot;,
+    &quot;gulp-autoprefixer&quot;: &quot;^3.1.1&quot;,
+    &quot;gulp-concat&quot;: &quot;^2.6.1&quot;,
+    &quot;gulp-cssnano&quot;: &quot;^2.1.2&quot;,
+    &quot;gulp-less&quot;: &quot;^3.3.0&quot;,
+    &quot;gulp-plumber&quot;: &quot;^1.1.0&quot;,
+    &quot;gulp-postcss&quot;: &quot;^6.2.0&quot;,
+    &quot;gulp-rename&quot;: &quot;^1.2.2&quot;,
+    &quot;gulp-uglify&quot;: &quot;^2.0.0&quot;,
+    &quot;gulp-webpack&quot;: &quot;^1.5.0&quot;,
+    &quot;postcss-px2rem&quot;: &quot;^0.3.0&quot;,
+    &quot;webpack&quot;: &quot;^1.14.0&quot;
+  }
+}
+</code></pre><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre><code>const gulp = require(&apos;gulp&apos;);
+const rename = require(&apos;gulp-rename&apos;);
+const cssnano = require(&apos;gulp-cssnano&apos;);
+const less = require(&apos;gulp-less&apos;);
+const concat = require(&apos;gulp-concat&apos;);
+const autoprefixer= require(&apos;gulp-autoprefixer&apos;);
+const postcss = require(&apos;gulp-postcss&apos;);
+const px2rem= require(&apos;postcss-px2rem&apos;);
+var webpack = require(&apos;gulp-webpack&apos;);
+var webpackConfig = require(&apos;./webpack.config.js&apos;)
+gulp.task(&apos;handelCSS&apos;, function(){
+    return gulp.src(&apos;app/css/*.less&apos;)
+        .pipe(less())
+        .pipe(postcss([px2rem({remUnit: 64})]))
+        .pipe(autoprefixer({
+            browsers: [ &apos;&gt;5%&apos;],
+            cascade: false, //是否美化属性值 默认：true 像这样：
+            //-webkit-transform: rotate(45deg);
+            //        transform: rotate(45deg);
+            remove:true //是否去掉不必要的前缀 默认：true
+        }))
+        .pipe(concat(&apos;app.css&apos;))
+        .pipe(gulp.dest(&apos;dist/css&apos;))
+        .pipe(cssnano())
+        .pipe(rename(function(path){
+            path.basename += &apos;.min&apos;;
+        }))
+        .pipe(gulp.dest(&apos;dist/css&apos;));
+})
+gulp.task(&apos;html&apos;, function() {
+    return gulp.src(&apos;app/*.html&apos;) // 指明源文件路径、并进行文件匹配
+        .pipe(gulp.dest(&apos;dist&apos;)); // 输出路径
+});
+gulp.task(&apos;handelJS&apos;, function(){
+    return gulp.src(&apos;app/js/*.js&apos;)
+        .pipe(webpack( webpackConfig ))//重点
+        .pipe(gulp.dest(&apos;dist/&apos;))
+})
+// 监视文件变化，自动执行任务
+gulp.task(&apos;watch&apos;, function(){
+    gulp.watch(&apos;app/*.html&apos;, [&apos;html&apos;]);
+    gulp.watch(&apos;app/css/*.less&apos;, [&apos;handelCSS&apos;]);
+    gulp.watch(&apos;app/js/*.js&apos;, [&apos;handelJS&apos;]);
+})
+gulp.task(&apos;start&apos;, [&apos;handelJS&apos;, &apos;handelCSS&apos;, &apos;html&apos;]);
+gulp.task(&apos;default&apos;,[&apos;start&apos;,&apos;watch&apos;]);
+</code></pre><h3 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h3><pre><code>const path = require(&apos;path&apos;);
+const webpack = require(&apos;webpack&apos;);
+const ROOT_PATH = path.resolve(__dirname);
+const APP_PATH = path.resolve(ROOT_PATH, &apos;app&apos;);
+const BUILD_PATH = path.resolve(ROOT_PATH, &apos;dist&apos;);
+module.exports = {
+    entry: {
+        app:APP_PATH+&apos;/js/index.js&apos;,
+    },
+    output: {
+        path: BUILD_PATH,
+        publicPath: &quot;./&quot;,
+        filename: &apos;bundle.js&apos;
+    },
+    plugins: [
+        // new CleanPlugin(&apos;build&apos;),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                warnings: false,
+            },
+            sourceMap: true,
+            except: [&apos;$super&apos;, &apos;$&apos;, &apos;exports&apos;, &apos;require&apos;] //排除关键字
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+    ],
+    module: {
+        loaders: [
+
+             {
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: &apos;babel&apos;,
+                query: {
+                    presets: [ &apos;es2015&apos;]
+                },
+            }]
+    }
+}
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -180,40 +331,94 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">效率</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">快捷方式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/优化/" class="article-tag-list-link color3">优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/07/gulp和webpack的完美结合/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/02/07/H5项目常见问题汇总及解决方案/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">H5项目常见问题汇总及解决方案</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-    
+
 
 
           </div>
@@ -236,10 +441,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,

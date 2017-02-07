@@ -54,7 +54,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/tags/前端/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -65,10 +65,6 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-    			
-            
-    			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
@@ -76,13 +72,11 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/kingdee88" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/kingdee-77/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="jianshu" target="_blank" href="http://www.jianshu.com/users/acb9303720b7/timeline" title="jianshu"><i class="icon-jianshu"></i></a>
 		        
 			</div>
 		</nav>
@@ -117,13 +111,11 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/kingdee88" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/kingdee-77/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="jianshu" target="_blank" href="http://www.jianshu.com/users/acb9303720b7/timeline" title="jianshu"><i class="icon-jianshu"></i></a>
 			        
 				</div>
 			</nav>
@@ -134,7 +126,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/前端/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -150,6 +142,184 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-gulp和webpack的完美结合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/07/gulp和webpack的完美结合/">gulp和webpack的完美结合</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/07/gulp和webpack的完美结合/" class="archive-article-date">
+  	<time datetime="2017-02-07T07:29:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>gulp来实现实时监控文件的变化以及css相关处理<br>webpack则处理js</p>
+<h3 id="包依赖-package-json"><a href="#包依赖-package-json" class="headerlink" title="包依赖(package.json)"></a>包依赖(package.json)</h3><pre><code>{
+  &quot;name&quot;: &quot;gulp-temp&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;babel-core&quot;: &quot;^6.21.0&quot;,
+    &quot;babel-loader&quot;: &quot;^6.2.10&quot;,
+    &quot;babel-preset-es2015&quot;: &quot;^6.18.0&quot;,
+    &quot;gulp&quot;: &quot;^3.9.1&quot;,
+    &quot;gulp-autoprefixer&quot;: &quot;^3.1.1&quot;,
+    &quot;gulp-concat&quot;: &quot;^2.6.1&quot;,
+    &quot;gulp-cssnano&quot;: &quot;^2.1.2&quot;,
+    &quot;gulp-less&quot;: &quot;^3.3.0&quot;,
+    &quot;gulp-plumber&quot;: &quot;^1.1.0&quot;,
+    &quot;gulp-postcss&quot;: &quot;^6.2.0&quot;,
+    &quot;gulp-rename&quot;: &quot;^1.2.2&quot;,
+    &quot;gulp-uglify&quot;: &quot;^2.0.0&quot;,
+    &quot;gulp-webpack&quot;: &quot;^1.5.0&quot;,
+    &quot;postcss-px2rem&quot;: &quot;^0.3.0&quot;,
+    &quot;webpack&quot;: &quot;^1.14.0&quot;
+  }
+}
+</code></pre><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre><code>const gulp = require(&apos;gulp&apos;);
+const rename = require(&apos;gulp-rename&apos;);
+const cssnano = require(&apos;gulp-cssnano&apos;);
+const less = require(&apos;gulp-less&apos;);
+const concat = require(&apos;gulp-concat&apos;);
+const autoprefixer= require(&apos;gulp-autoprefixer&apos;);
+const postcss = require(&apos;gulp-postcss&apos;);
+const px2rem= require(&apos;postcss-px2rem&apos;);
+var webpack = require(&apos;gulp-webpack&apos;);
+var webpackConfig = require(&apos;./webpack.config.js&apos;)
+gulp.task(&apos;handelCSS&apos;, function(){
+    return gulp.src(&apos;app/css/*.less&apos;)
+        .pipe(less())
+        .pipe(postcss([px2rem({remUnit: 64})]))
+        .pipe(autoprefixer({
+            browsers: [ &apos;&gt;5%&apos;],
+            cascade: false, //是否美化属性值 默认：true 像这样：
+            //-webkit-transform: rotate(45deg);
+            //        transform: rotate(45deg);
+            remove:true //是否去掉不必要的前缀 默认：true
+        }))
+        .pipe(concat(&apos;app.css&apos;))
+        .pipe(gulp.dest(&apos;dist/css&apos;))
+        .pipe(cssnano())
+        .pipe(rename(function(path){
+            path.basename += &apos;.min&apos;;
+        }))
+        .pipe(gulp.dest(&apos;dist/css&apos;));
+})
+gulp.task(&apos;html&apos;, function() {
+    return gulp.src(&apos;app/*.html&apos;) // 指明源文件路径、并进行文件匹配
+        .pipe(gulp.dest(&apos;dist&apos;)); // 输出路径
+});
+gulp.task(&apos;handelJS&apos;, function(){
+    return gulp.src(&apos;app/js/*.js&apos;)
+        .pipe(webpack( webpackConfig ))//重点
+        .pipe(gulp.dest(&apos;dist/&apos;))
+})
+// 监视文件变化，自动执行任务
+gulp.task(&apos;watch&apos;, function(){
+    gulp.watch(&apos;app/*.html&apos;, [&apos;html&apos;]);
+    gulp.watch(&apos;app/css/*.less&apos;, [&apos;handelCSS&apos;]);
+    gulp.watch(&apos;app/js/*.js&apos;, [&apos;handelJS&apos;]);
+})
+gulp.task(&apos;start&apos;, [&apos;handelJS&apos;, &apos;handelCSS&apos;, &apos;html&apos;]);
+gulp.task(&apos;default&apos;,[&apos;start&apos;,&apos;watch&apos;]);
+</code></pre><h3 id="webpack-config-js"><a href="#webpack-config-js" class="headerlink" title="webpack.config.js"></a>webpack.config.js</h3><pre><code>const path = require(&apos;path&apos;);
+const webpack = require(&apos;webpack&apos;);
+const ROOT_PATH = path.resolve(__dirname);
+const APP_PATH = path.resolve(ROOT_PATH, &apos;app&apos;);
+const BUILD_PATH = path.resolve(ROOT_PATH, &apos;dist&apos;);
+module.exports = {
+    entry: {
+        app:APP_PATH+&apos;/js/index.js&apos;,
+    },
+    output: {
+        path: BUILD_PATH,
+        publicPath: &quot;./&quot;,
+        filename: &apos;bundle.js&apos;
+    },
+    plugins: [
+        // new CleanPlugin(&apos;build&apos;),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                warnings: false,
+            },
+            sourceMap: true,
+            except: [&apos;$super&apos;, &apos;$&apos;, &apos;exports&apos;, &apos;require&apos;] //排除关键字
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+    ],
+    module: {
+        loaders: [
+
+             {
+                test: /\.jsx?$/,
+                exclude: /(node_modules|bower_components)/,
+                loader: &apos;babel&apos;,
+                query: {
+                    presets: [ &apos;es2015&apos;]
+                },
+            }]
+    }
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/07/gulp和webpack的完美结合/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-H5项目常见问题汇总及解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -354,25 +524,17 @@
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -402,6 +564,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">快捷方式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
             
             <div class="clearfix"></div>
@@ -448,43 +614,11 @@
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">eating&lt;br&gt;&lt;br&gt;coding&lt;br&gt;sleeping</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">EATING&lt;br&gt;CODING &lt;br&gt; SLEEPING.... &lt;br&gt; 我是一只小小鸟</div>
   	  	
     	</section>
     
