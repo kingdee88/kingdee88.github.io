@@ -151,6 +151,166 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-H5项目常见问题汇总及解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/07/H5项目常见问题汇总及解决方案/">H5项目常见问题汇总及解决方案</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/07/H5项目常见问题汇总及解决方案/" class="archive-article-date">
+  	<time datetime="2017-02-07T05:39:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>H5项目常见问题及注意事项</p>
+<p>Meta基础知识：</p>
+<p>H5页面窗口自动调整到设备宽度，并禁止用户缩放页面<br>//一、HTML页面结构</p>
+<p><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><br>// width    设置viewport宽度，为一个正整数，或字符串‘device-width’<br>// height   设置viewport高度，一般设置了宽度，会自动解析出高度，可以不用设置<br>// initial-scale    默认缩放比例，为一个数字，可以带小数<br>// minimum-scale    允许用户最小缩放比例，为一个数字，可以带小数<br>// maximum-scale    允许用户最大缩放比例，为一个数字，可以带小数<br>// user-scalable    是否允许手动缩放</p>
+<p>//二、JS动态判断<br>var phoneWidth =  parseInt(window.screen.width);<br>var phoneScale = phoneWidth/640;<br>var ua = navigator.userAgent;<br>if (/Android (\d+.\d+)/.test(ua)){<br>    var version = parseFloat(RegExp.$1);<br>    if(version&gt;2.3){<br>        document.write(‘<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">‘);<br>    }else{<br>        document.write(‘<meta name="viewport" content="width=640, target-densitydpi=device-dpi">‘);<br>    }<br>} else {<br>    document.write(‘<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">‘);<br>}<br>空白页基本meta标签<br><!-- 设置缩放 --></p>
+<p><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"><br><!-- 可隐藏地址栏，仅针对IOS的Safari（注：IOS7.0版本以后，safari上已看不到效果） --></p>
+<p><meta name="apple-mobile-web-app-capable" content="yes"><br><!-- 仅针对IOS的Safari顶端状态条的样式（可选default/black/black-translucent ） --></p>
+<p><meta name="apple-mobile-web-app-status-bar-style" content="black"><br><!-- IOS中禁用将数字识别为电话号码/忽略Android平台中对邮箱地址的识别 --></p>
+<p><meta name="format-detection" content="telephone=no, email=no"><br>其他meta标签<br><!-- 启用360浏览器的极速模式(webkit) --></p>
+<p><meta name="renderer" content="webkit"><br><!-- 避免IE使用兼容模式 --></p>
+<p><meta http-equiv="X-UA-Compatible" content="IE=edge"><br><!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 --></p>
+<p><meta name="HandheldFriendly" content="true"><br><!-- 微软的老式浏览器 --></p>
+<p><meta name="MobileOptimized" content="320"><br><!-- uc强制竖屏 --></p>
+<p><meta name="screen-orientation" content="portrait"><br><!-- QQ强制竖屏 --></p>
+<p><meta name="x5-orientation" content="portrait"><br><!-- UC强制全屏 --></p>
+<p><meta name="full-screen" content="yes"><br><!-- QQ强制全屏 --></p>
+<p><meta name="x5-fullscreen" content="true"><br><!-- UC应用模式 --></p>
+<p><meta name="browsermode" content="application"><br><!-- QQ应用模式 --></p>
+<p><meta name="x5-page-mode" content="app"><br><!-- windows phone 点击无高光 --></p>
+<p><meta name="msapplication-tap-highlight" content="no"><br>常见问题：</p>
+<p>移动端如何定义字体font-family<br>@ ————————————–中文字体的英文名称<br>@ 宋体      SimSun<br>@ 黑体      SimHei<br>@ 微信雅黑   Microsoft Yahei<br>@ 微软正黑体 Microsoft JhengHei<br>@ 新宋体    NSimSun<br>@ 新细明体  MingLiU<br>@ 细明体    MingLiU<br>@ 标楷体    DFKai-SB<br>@ 仿宋     FangSong<br>@ 楷体     KaiTi<br>@ 仿宋_GB2312  FangSong_GB2312<br>@ 楷体_GB2312  KaiTi_GB2312<br>@<br>@ 说明：中文字体多数使用宋体、雅黑，英文用Helvetica</p>
+<p>body { font-family: Microsoft Yahei,SimSun,Helvetica; }<br>打电话发短信写邮件怎么实现<br>// 一、打电话<br><a href="tel:0755-10086" target="_blank" rel="external">打电话给:0755-10086</a></p>
+<p>//  二、发短信，winphone系统无效<br><a href="sms:10086" target="_blank" rel="external">发短信给: 10086</a></p>
+<p>// 三、写邮件<br>//注：在添加这些功能时，第一个功能以”?”开头，后面的以”&amp;”开头<br>//1.普通邮件<br><a href="mailto:863139978@qq.com" target="_blank" rel="external">点击我发邮件</a><br>//2.收件地址后添加?cc=开头，可添加抄送地址（Android存在兼容问题）<br><a href="mailto:863139978@qq.com?cc=zhangqian0406@yeah.net" target="_blank" rel="external">点击我发邮件</a><br>//3.跟着抄送地址后，写上&amp;bcc=,可添加密件抄送地址（Android存在兼容问题）<br><a href="mailto:863139978@qq.com?cc=zhangqian0406@yeah.net&bcc=384900096@qq.com" target="_blank" rel="external">点击我发邮件</a><br>//4.包含多个收件人、抄送、密件抄送人，用分号(;)隔开多个邮件人的地址<br><a href="mailto:863139978@qq.com;384900096@qq.com" target="_blank" rel="external">点击我发邮件</a><br>//5.包含主题，用?subject=<br><a href="mailto:863139978@qq.com?subject=邮件主题" target="_blank" rel="external">点击我发邮件</a><br>//6.包含内容，用?body=;如内容包含文本，使用%0A给文本换行<br><a href="mailto:863139978@qq.com?body=邮件主题内容%0A腾讯诚信%0A期待您的到来" target="_blank" rel="external">点击我发邮件</a><br>//7.内容包含链接，含http(s)://等的文本自动转化为链接<br><a href="mailto:863139978@qq.com?body=http://www.baidu.com" target="_blank" rel="external">点击我发邮件</a><br>//8.内容包含图片（PC不支持）<br><a href="mailto:863139978@qq.com?body=<img src='images/1.jpg' />" target="_blank" rel="external">点击我发邮件</a><br>//9.完整示例<br><a href="mailto:863139978@qq.com;384900096@qq.com?cc=zhangqian0406@yeah.net&bcc=993233461@qq.com&subject=[邮件主题]&body=腾讯诚邀您参与%0A%0Ahttp://www.baidu.com%0A%0A<img src='images/1.jpg' />" target="_blank" rel="external">点击我发邮件</a><br>移动端touch事件（区分webkit和winphone）<br>/<em> 当用户手指放在移动设备在屏幕上滑动会触发的touch事件 </em>/<br>// 以下支持webkit<br>touchstart——当手指触碰屏幕时候发生。不管当前有多少只手指<br>touchmove——当手指在屏幕上滑动时连续触发。通常我们再滑屏页面，会调用event的preventDefault()可以阻止默认情况的发生：阻止页面滚动<br>touchend——当手指离开屏幕时触发<br>touchcancel——系统停止跟踪触摸时候会触发。例如在触摸过程中突然页面alert()一个提示框，此时会触发该事件，这个事件比较少用</p>
+<p>//TouchEvent说明：<br>touches：屏幕上所有手指的信息<br>targetTouches：手指在目标区域的手指信息<br>changedTouches：最近一次触发该事件的手指信息<br>touchend时，touches与targetTouches信息会被删除，changedTouches保存的最后一次的信息，最好用于计算手指信息</p>
+<p>//参数信息(changedTouches[0])<br>clientX、clientY在显示区的坐标<br>target：当前元素</p>
+<p>//事件响应顺序<br>ontouchstart  &gt; ontouchmove  &gt; ontouchend &gt; onclick</p>
+<p>// 以下支持winphone 8<br>MSPointerDown——当手指触碰屏幕时候发生。不管当前有多少只手指<br>MSPointerMove——当手指在屏幕上滑动时连续触发。通常我们再滑屏页面，会调用css的html{-ms-touch-action: none;}可以阻止默认情况的发生：阻止页面滚动<br>MSPointerUp——当手指离开屏幕时触发<br>移动端click屏幕产生200-300ms的延时响应<br>说明：移动设备上的web网页是有300ms延迟的，玩玩会造成按钮点击延迟甚至是点击失效。</p>
+<p>以下是历史原因，来源一个公司内一个同事的分享：<br>2007年苹果发布首款iphone上IOS系统搭载的safari为了将适用于PC端上大屏幕的网页能比较好的展示在手机端上，使用了双击缩放(double tap to zoom)的方案，比如你在手机上用浏览器打开一个PC上的网页，你可能在看到页面内容虽然可以撑满整个屏幕，但是字体、图片都很小看不清，此时可以快速双击屏幕上的某一部分，你就能看清该部分放大后的内容，再次双击后能回到原始状态。</p>
+<p>双击缩放是指用手指在屏幕上快速点击两次，iOS 自带的 Safari 浏览器会将网页缩放至原始比例。</p>
+<p>原因就出在浏览器需要如何判断快速点击上，当用户在屏幕上单击某一个元素时候，例如跳转链接<a href="#"></a>，此处浏览器会先捕获该次单击，但浏览器不能决定用户是单纯要点击链接还是要双击该部分区域进行缩放操作，所以，捕获第一次单击后，浏览器会先Hold一段时间t，如果在t时间区间里用户未进行下一次点击，则浏览器会做单击跳转链接的处理，如果t时间里用户进行了第二次单击操作，则浏览器会禁止跳转，转而进行对该部分区域页面的缩放操作。那么这个时间区间t有多少呢？在IOS safari下，大概为300毫秒。这就是延迟的由来。造成的后果用户纯粹单击页面，页面需要过一段时间才响应，给用户慢体验感觉，对于web开发者来说是，页面js捕获click事件的回调函数处理，需要300ms后才生效，也就间接导致影响其他业务逻辑的处理。</p>
+<p>//解决方案：<br>fastclick可以解决在手机上点击事件的300ms延迟<br>zepto的touch模块，tap事件也是为了解决在click的延迟问题<br>Rentina显示屏原理及设计方案<br>说明：retina屏是一种具备超高像素密度的液晶屏，同样大小的屏幕上显示的像素点由1个变为多个，如在同样带下的屏幕上，苹果设备的retina显示屏中，像素点1个变为4个。<br>在高清显示屏中的位图被放大，图片会变得模糊，因此移动端的视觉稿通常会设计为传统PC的2倍。<br>那么，前端的应对方案是：设计稿切出来的图片长宽保证为偶数，并使用backgroud-size把图片缩小为原来的1/2<br>//例如图片宽高为：200px*200px，那么写法如下<br>.css{width:100px;height:100px;background-size:100px 100px;}<br>//其它元素的取值为原来的1/2，例如视觉稿40px的字体，使用样式的写法为20px<br>.css{font-size:20px}</p>
+<p>//image-set设计Rentina背景图<br>image-set,webkit私有属性，也是CSS4的属性，为解决Rentina屏幕下的图像而生。<br>.css {<br>    background: url(images/bg.jpg) no-repeat center;<br>    background: -webkit-image-set(<br>    url(images/bg.jpg) 1x,     //支持image-set普通屏<br>    url(images/bg-2x.jpg) 2x); //支持image-set的Rentinan<br>}<br>点击元素产生背景或边框怎么去掉<br>/ios用户点击一个链接，会出现一个半透明灰色遮罩, 如果想要禁用，可设置-webkit-tap-highlight-color的alpha值为0去除灰色半透明遮罩；<br>//android用户点击一个链接，会出现一个边框或者半透明灰色遮罩, 不同生产商定义出来额效果不一样，可设置-webkit-tap-highlight-color的alpha值为0去除部分机器自带的效果；<br>//winphone系统,点击标签产生的灰色半透明背景，能通过设置<meta name="msapplication-tap-highlight" content="no">去掉；<br>//特殊说明：有些机型去除不了，如小米2。对于按钮类还有个办法，不使用a或者input标签，直接用div标签<br>a,button,input,textarea {<br>    -webkit-tap-highlight-color: rgba(0,0,0,0);<br>    -webkit-user-modify:read-write-plaintext-only; //-webkit-user-modify有个副作用，就是输入法不再能够输入多个字符<br>}<br>// 也可以 </p>
+<ul>
+<li>{ -webkit-tap-highlight-color: rgba(0,0,0,0); }<br>//winphone下<br><meta name="msapplication-tap-highlight" content="no"><br>美化表单元素<br>//一、使用appearance改变webkit浏览器的默认外观<br>input,select { -webkit-appearance:none; appearance: none; }</li>
+</ul>
+<p>//二、winphone下，使用伪元素改变表单元素默认外观<br>//1.禁用select默认箭头，::-ms-expand修改表单控件下拉箭头，设置隐藏并使用背景图片来修饰<br>select::-ms-expand { display:none; }</p>
+<p>//2.禁用radio和checkbox默认样式，::-ms-check修改表单复选框或单选框默认图标，设置隐藏并使用背景图片来修饰<br>input[type=radio]::-ms-check,<br>input[type=checkbox]::-ms-check { display:none; }</p>
+<p>//3.禁用pc端表单输入框默认清除按钮，::-ms-clear修改清除按钮，设置隐藏并使用背景图片来修饰<br>input[type=text]::-ms-clear,<br>input[type=tel]::-ms-clear,<br>input[type=number]::-ms-clear { display:none; }<br>移动端字体单位font-size选择px还是rem<br>// 如需适配多种移动设备，建议使用rem。以下为参考值：<br>html { font-size: 62.5%; }   //10*16 = 62.5%<br>//设置12px字体   这里注意在rem前要加上对应的px值，解决不支持rem的浏览器的兼容问题，做到优雅降级<br>body { font-size:12px; font-size:1.2rem; }<br>超实用的CSS样式<br>//去掉webkit的滚动条——display: none;<br>//其他参数<br>::-webkit-scrollba //滚动条整体部分<br>::-webkit-scrollbar-thumb   //滚动条内的小方块<br>::-webkit-scrollbar-track   //滚动条轨道<br>::-webkit-scrollbar-button  //滚动条轨道两端按钮<br>::-webkit-scrollbar-track-piece  //滚动条中间部分，内置轨道<br>::-webkit-scrollbar-corner       //边角，两个滚动条交汇处<br>::-webkit-resizer            //两个滚动条的交汇处上用于通过拖动调整元素大小的小控件</p>
+<p>// 禁止长按链接与图片弹出菜单<br>a,img { -webkit-touch-callout: none }    </p>
+<p>// 禁止ios和android用户选中文字<br>html,body {-webkit-user-select:none; user-select: none; }</p>
+<p>// 改变输入框placeholder的颜色值<br>::-webkit-input-placeholder { /<em> WebKit browsers </em>/<br>color: #999; }<br>:-moz-placeholder { /<em> Mozilla Firefox 4 to 18 </em>/<br>color: #999; }<br>::-moz-placeholder { /<em> Mozilla Firefox 19+ </em>/<br>color: #999; }<br>:-ms-input-placeholder { /<em> Internet Explorer 10+ </em>/<br>color: #999; }<br>input:focus::-webkit-input-placeholder{ color:#999; }</p>
+<p>// android上去掉语音输入按钮<br>input::-webkit-input-speech-button {display: none}</p>
+<p>// 阻止windows Phone的默认触摸事件<br>/<em>说明：winphone下默认触摸事件事件使用e.preventDefault是无效的，可通过样式来禁用，如：</em>/<br>html { -ms-touch-action:none; } //禁止winphone默认触摸事件<br>取消input在ios下，输入的时候英文首字母的默认大写</p>
+<p><input autocapitalize="off" autocorrect="off"><br>手机拍照和上传图片<br>//IOS有拍照、录像、选取本地图片功能，部分Android只有选择本地图片功能。Winphone不支持</p>
+<p><input type="file" accept="images/*"></p>
+<p><input type="file" accept="video/*"><br>屏幕旋转的事件和样式<br>//JS处理<br>function orientInit(){<br>    var orientChk = document.documentElement.clientWidth &gt; document.documentElement.clientHeight?’landscape’:’portrait’;<br>    if(orientChk ==’lapdscape’){<br>        //这里是横屏下需要执行的事件<br>    }else{<br>        //这里是竖屏下需要执行的事件<br>    }<br>}</p>
+<p>orientInit();<br>window.addEventListener(‘onorientationchange’ in window?’orientationchange’:’resize’, function(){<br>    setTimeout(orientInit, 100);<br>},false)    </p>
+<p>//CSS处理<br>//竖屏时样式<br>@media all and (orientation:portrait){   }<br>//横屏时样式<br>@media all and (orientation:landscape){   }<br>audio元素和video元素在ios和andriod中无法自动播放<br>//音频，写法一</p>
+<audio src="music/bg.mp3" autoplay loop controls>你的浏览器还不支持哦</audio>
+
+<p>//音频，写法二</p>
+<audio controls="controls"><br>    <source src="music/bg.ogg" type="audio/ogg"><br>    <source src="music/bg.mp3" type="audio/mpeg"><br>    优先播放音乐bg.ogg，不支持在播放bg.mp3<br></audio>
+
+<p>//JS绑定自动播放（操作window时，播放音乐）<br>$(window).one(‘touchstart’, function(){<br>    music.play();<br>})</p>
+<p>//微信下兼容处理<br>document.addEventListener(“WeixinJSBridgeReady”, function () {<br>    music.play();<br>}, false);</p>
+<p>//小结<br>//1.audio元素的autoplay属性在IOS及Android上无法使用，在PC端正常<br>//2.audio元素没有设置controls时，在IOS及Android会占据空间大小，而在PC端Chrome是不会占据任何空间<br>重力感应事件<br>// 运用HTML5的deviceMotion，调用重力感应事件<br>if(window.DeviceMotionEvent){<br>    document.addEventListener(‘devicemotion’, deviceMotionHandler, false)<br>}   </p>
+<p>var speed = 30;<br>var x = y = z = lastX = lastY = lastZ = 0;<br>function deviceMotionHandler(eventData){<br>    var acceleration = event.accelerationIncludingGravity;<br>    x = acceleration.x;<br>    y = acceleration.y;<br>    z = acceleration.z;<br>    if(Math.abs(x-lastX)&gt;speed || Math.abs(y-lastY)&gt;speed || Math.abs(z-lastZ)&gt;speed ){<br>        //这里是摇动后要执行的方法<br>        yaoAfter();<br>    }<br>    lastX = x;<br>    lastY = y;<br>    lastZ = z;<br>}</p>
+<p>function yaoAfter(){<br>    //do something<br>}<br>微信浏览器用户调整字体大小后页面矬了，怎么阻止用户调整<br>//以下代码可使Android机页面不再受用户字体缩放强制改变大小，但是会有1S左右延时，期间可以考虑loading来处理<br>if (typeof(WeixinJSBridge) == “undefined”) {<br>    document.addEventListener(“WeixinJSBridgeReady”, function (e) {<br>        setTimeout(function(){<br>            WeixinJSBridge.invoke(‘setFontSizeCallback’, { ‘fontSize’:0}, function(res){<br>                alert(JSON.stringify(res));<br>            })<br>        }, 0)<br>    });<br>}else{<br>    setTimeout(function(){<br>        WeixinJSBridge.invoke(‘setFontSizeCallback’, { ‘fontSize’:0}, function(res){<br>            alert(JSON.stringify(res));<br>        })<br>    }, 0)<br>}</p>
+<p>//IOS下可使用 -webkit-text-size-adjust禁止用户调整字体大小<br>body { -webkit-text-size-adjust:100%!important; }</p>
+<p>//最好的解决方案：最好使用rem或百分比布局<br>定位的坑<br>//fixed定位<br>//1.ios下fixed元素容易定位出错，软键盘弹出时，影响fixed元素定位<br>//2.android下fixed表现要比iOS更好，软键盘弹出时，不会影响fixed元素定位<br>//3.ios4下不支持position:fixed<br>//解决方案：使用<a href="http://cubiq.org/iscroll-5" target="_blank" rel="external">Iscroll</a>，如：</p>
+<p><div id="wrapper"><br>        <ul><br>               <li></li><br>               …..<br>        </ul><br></div></p>
+<script src="iscroll.js"></script>
+<script>
+    var myscroll;
+    function loaded(){
+        myscroll=new iScroll("wrapper");
+    }
+    window.addEventListener("DOMContentLoaded",loaded,false);
+</script>
+
+
+<p>//position定位<br>//Android下弹出软键盘弹出时，影响absolute元素定位<br>//解决方案:<br>var ua = navigator.userAgent.indexOf(‘Android’);<br>if(ua&gt;-1){<br>    $(‘.ipt’).on(‘focus’, function(){<br>        $(‘.css’).css({‘visibility’:’hidden’})<br>    }).on(‘blur’, function(){<br>        $(‘.css’).css({‘visibility’:’visible’})<br>    })<br>}<br>播放视频不全屏<br><!--
+1.ios7+支持自动播放
+2.支持Airplay的设备（如：音箱、Apple TV)播放
+x-webkit-airplay="true" 
+3.播放视频不全屏
+webkit-playsinline="true" 
+--></p>
+<p><video x-webkit-airplay="true" webkit-playsinline="true" preload="auto" autoplay src="http://"></video><br>JS判断设备<br>function deviceType(){<br>    var ua = navigator.userAgent;<br>    var agent = [“Android”, “iPhone”, “SymbianOS”, “Windows Phone”, “iPad”, “iPod”];<br>    for(var i=0; i<len,len =="" agent.length;="" i++){="" if(ua.indexof(agent[i])="">0){<br>            break;<br>        }<br>    }<br>}<br>deviceType();<br>window.addEventListener(‘resize’, function(){<br>    deviceType();<br>})<br>JS判断微信浏览器<br>function isWeixin(){<br>    var ua = navigator.userAgent.toLowerCase();<br>    if(ua.match(/MicroMessenger/i)==’micromessenger’){<br>        return true;<br>    }else{<br>        return false;<br>    }<br>}<br>android 2.3 bug<br>//1.@-webkit-keyframes 需要以0%开始100%结束，0%的百分号不能去掉<br>//2.after和before伪类无法使用动画animation<br>//3.border-radius不支持%单位，如要兼容，可以给radius设置一下较大的值<br>//4.translate百分比的写法和scale在一起会导致失效，例如：<br>-webkit-transform: translate(-50%,-50%) scale(-0.5, 1)<br>android 4.x bug<br>//1.三星 Galaxy S4中自带浏览器不支持border-radius缩写<br>//2.同时设置border-radius和背景色的时候，背景色会溢出到圆角以外部分<br>//3.部分手机(如三星)，a链接支持鼠标:visited事件，也就是说链接访问后文字变为紫色<br>//4.android无法同时播放多音频audio<br>消除transition闪屏<br>.css {<br>    -webkit-transform-style: preserve-3d;<br>    -webkit-backface-visibility: hidden;<br>    -webkit-perspective: 1000;<br>}<br>开启硬件加速<br>//目前，像Chrome/Filefox/Safari/IE9+以及最新版本Opera都支持硬件加速，当检测到某个DOM元素应用了某些CSS规则时就会自动开启，从而解决页面闪白，保证动画流畅。<br>.css {<br>    -webkit-transform: translate3d(0,0,0);<br>    -moz-transform: translate3d(0,0,0);<br>    -ms-transform: translate3d(0,0,0);<br>    transform: translate3d(0,0,0);<br>}<br>渲染优化<br>//1.禁止使用iframe（阻塞父文档onload事件）<br>//2.禁止使用gif图片实现loading效果（降低CPU消耗，提升渲染性能）<br>//使用CSS3代码代替JS动画；<br>//开启GPU加速；<br>//使用base64位编码图片(不小图而言，大图不建议使用)<br>    // 对于一些小图标，可以使用base64位编码，以减少网络请求。但不建议大图使用，比较耗费CPU。小图标优势在于：<br>    //1.减少HTTP请求；<br>    //2.避免文件跨域；<br>    //3.修改及时生效；</len,len></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">效率</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">快捷方式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/优化/" class="article-tag-list-link color3">优化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/07/H5项目常见问题汇总及解决方案/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -297,6 +457,18 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">效率</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">快捷方式</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
