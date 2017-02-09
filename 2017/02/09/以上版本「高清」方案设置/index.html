@@ -3,14 +3,27 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 前端 | KD blog</title>
+    <title>以上版本「高清」方案设置 | KD blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="KD blog">
-<meta property="og:url" content="https://kingdee88.github.io/tags/前端/index.html">
+    <meta name="description" content="何为高清高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果
+
+•    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html &amp;gt; head 里
+  &amp;lt;!DOCTYPE html&amp;gt;        title   /* 高清方案脚本 /">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以上版本「高清」方案设置">
+<meta property="og:url" content="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/index.html">
 <meta property="og:site_name" content="KD blog">
+<meta property="og:description" content="何为高清高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果
+
+•    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html &amp;gt; head 里
+  &amp;lt;!DOCTYPE html&amp;gt;        title   /* 高清方案脚本 /">
+<meta property="og:updated_time" content="2017-02-09T00:49:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KD blog">
+<meta name="twitter:title" content="以上版本「高清」方案设置">
+<meta name="twitter:description" content="何为高清高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果
+
+•    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html &amp;gt; head 里
+  &amp;lt;!DOCTYPE html&amp;gt;        title   /* 高清方案脚本 /">
     
 
     
@@ -193,25 +206,21 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#前端</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="antd-以上版本「高清」方案设置" class="article article-type-antd" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/02/09/以上版本「高清」方案设置/">以上版本「高清」方案设置</a>
+        <h1 class="article-title" itemprop="name">
+            以上版本「高清」方案设置
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2017/02/09/以上版本「高清」方案设置/">
@@ -220,85 +229,171 @@
     </div>
 
 
-                    
-                    
+                        
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/效率/">效率</a>, <a class="tag-link" href="/tags/移动/">移动</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/02/07/gulp和webpack的完美结合/">gulp和webpack的完美结合</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="何为高清"><a href="#何为高清" class="headerlink" title="何为高清"></a>何为高清</h3><p>高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果</p>
+<ul>
+<li><p>•    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html > head 里</p>
+<p>  &lt;!DOCTYPE html&gt;<br>  <head><br>   <meta charset="utf-8"><br>   <title>title</title><br>   <script>/<em>* 高清方案脚本 </em>/</script><br>  </head><br>  <body></body><br>  </p>
+</li>
+</ul>
+<p>拷贝引入以下高清方案脚本，请内联写到所有 css 引用之前, 否则部分安卓机有问题（此脚本内部称为flex高清模式，支持任意等比缩放、兼容性好，其中原理请自己探索）：</p>
+<pre><code>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p=&quot;&quot;,t(0)}([function(e,t){&quot;use strict&quot;;Object.defineProperty(t,&quot;__esModule&quot;,{value:!0});var i=window;t[&quot;default&quot;]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&amp;&amp;parseInt(l[1].split(&quot;.&quot;).join(&quot;&quot;),10)&gt;=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&amp;&amp;d[1]&gt;534||c||(s=1);var u=1/s,m=r.querySelector(&apos;meta[name=&quot;viewport&quot;]&apos;);m||(m=r.createElement(&quot;meta&quot;),m.setAttribute(&quot;name&quot;,&quot;viewport&quot;),r.head.appendChild(m)),m.setAttribute(&quot;content&quot;,&quot;width=device-width,user-scalable=no,initial-scale=&quot;+u+&quot;,maximum-scale=&quot;+u+&quot;,minimum-scale=&quot;+u),r.documentElement.style.fontSize=a/2*s*n+&quot;px&quot;},e.exports=t[&quot;default&quot;]}]);
+flex(100, 1);
+</code></pre><p>附未压缩的<a href="https://os.alipayobjects.com/rmsportal/XKeZwTvyfsCqhRfcVIAY.js" title="源码链接" target="_blank" rel="external">源码链接</a></p>
+<ul>
+<li><p>•    『新项目忽略』在已有的未做类似高清方案的项目 less 文件中对 px 单位做 2 倍处理，可以使用 gulp 脚本（如果不是使用 gulp，则推荐使用 webpack，相应配置方法见下条），在 gulpfile.js 加入以下代码：</p>
+<p>  var gulp = require(‘gulp’);<br>  var replace = require(‘gulp-replace’);<br>  var gulpif = require(‘gulp-if’);<br>  var exec = require(‘child_process’).exec;<br>  var srcFiles = [</p>
+<pre><code>&apos;./src/**/*.less&apos;
+</code></pre><p>  ];<br>  gulp.task(‘doublepx’, function(done){</p>
+<pre><code>gulp.src(srcFiles)
+  .pipe(gulpif(true, replace(/[&apos;&quot;](\d+)px[&apos;&quot;]|\b(\d+)px\b/g, function(pixel) {
+    console.log(pixel, &apos;=&gt;&apos;, ( parseInt(pixel) * 2 ) + &apos;px&apos;);
+    if ( /&apos;|&quot;/.test(pixel) || &apos;0px&apos;== pixel || &apos;1px&apos; == pixel) {
+      return pixel;
+    }
+    return ( parseInt(pixel) * 2 ) + &apos;px&apos;;
+  })))
+  .pipe(gulp.dest(&apos;./src&apos;));
+done();
+</code></pre><p>  });<br>  gulp.task(‘default’, [‘doublepx’]);</p>
+</li>
+<li><p>•    随后新的样式值都写成和视觉稿上标注的值（视觉稿标注一般以设备物理点为单位，像 iPhone6 屏幕 750 的宽度）一样即可。</p>
+</li>
+<li><p>•    对于使用 webpack 的项目，在webpack.config.js里新增pxtorem配置、代码如下：</p>
+<p>   const pxtorem = require(‘postcss-pxtorem’);</p>
+<pre><code>webpackConfig.postcss.push(pxtorem({
+  rootValue: 100,
+  propWhiteList: [],
+}));
+</code></pre></li>
+<li><p>•    至此，高清方案设置完毕（过程中相关依赖请自行npm install）。</p>
+</li>
+</ul>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/02/07/gulp和webpack的完美结合/">
-            <time datetime="2017-02-07T07:29:31.000Z" itemprop="datePublished">2017-02-07</time>
-        </a>
-    </div>
-
-
-                    
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/工具/">工具</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/02/07/H5项目常见问题汇总及解决方案/">H5项目常见问题汇总及解决方案</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/02/07/H5项目常见问题汇总及解决方案/">
-            <time datetime="2017-02-07T05:39:03.000Z" itemprop="datePublished">2017-02-07</time>
-        </a>
-    </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/优化/">优化</a>
-    </div>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/快捷方式/">快捷方式</a>, <a class="tag-link" href="/tags/效率/">效率</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
 </div>
+
+    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciyxo2q2p0000qbseil3etk0a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/02/07/gulp和webpack的完美结合/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">gulp和webpack的完美结合</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
 </section>
             
                 <aside id="sidebar">
@@ -440,11 +535,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = 'undefined';
+            this.page.url = 'https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/';
+        
+        this.page.identifier = '以上版本「高清」方案设置';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/count.js';
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
