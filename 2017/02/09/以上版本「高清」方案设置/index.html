@@ -6,24 +6,27 @@
     <title>以上版本「高清」方案设置 | KD blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="何为高清高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果
-
 •    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html &amp;gt; head 里
-  &amp;lt;!DOCTYPE html&amp;gt;        title   /* 高清方案脚本 /">
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;head&amp;gt;
+ &amp;lt;meta charset=&amp;qu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="以上版本「高清」方案设置">
 <meta property="og:url" content="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/index.html">
 <meta property="og:site_name" content="KD blog">
 <meta property="og:description" content="何为高清高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果
-
 •    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html &amp;gt; head 里
-  &amp;lt;!DOCTYPE html&amp;gt;        title   /* 高清方案脚本 /">
-<meta property="og:updated_time" content="2017-02-09T00:49:08.000Z">
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;head&amp;gt;
+ &amp;lt;meta charset=&amp;qu">
+<meta property="og:updated_time" content="2017-02-09T00:52:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="以上版本「高清」方案设置">
 <meta name="twitter:description" content="何为高清高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果
-
 •    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html &amp;gt; head 里
-  &amp;lt;!DOCTYPE html&amp;gt;        title   /* 高清方案脚本 /">
+&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;head&amp;gt;
+ &amp;lt;meta charset=&amp;qu">
     
 
     
@@ -245,12 +248,16 @@
         
             
             <h3 id="何为高清"><a href="#何为高清" class="headerlink" title="何为高清"></a>何为高清</h3><p>高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果</p>
-<ul>
-<li><p>•    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html > head 里</p>
-<p>  &lt;!DOCTYPE html&gt;<br>  <head><br>   <meta charset="utf-8"><br>   <title>title</title><br>   <script>/<em>* 高清方案脚本 </em>/</script><br>  </head><br>  <body></body><br>  </p>
-</li>
-</ul>
-<p>拷贝引入以下高清方案脚本，请内联写到所有 css 引用之前, 否则部分安卓机有问题（此脚本内部称为flex高清模式，支持任意等比缩放、兼容性好，其中原理请自己探索）：</p>
+<p>•    用脚本设置 html 的 viewport （不要再写 html meta 标签去设置 viewport）：在 html > head 里</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;head&gt;
+ &lt;meta charset=&quot;utf-8&quot; /&gt;
+ &lt;title&gt;title&lt;/title&gt;
+ &lt;script&gt;/** 高清方案脚本 */&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>拷贝引入以下高清方案脚本，请内联写到所有 css 引用之前, 否则部分安卓机有问题（此脚本内部称为flex高清模式，支持任意等比缩放、兼容性好，其中原理请自己探索）：</p>
 <pre><code>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p=&quot;&quot;,t(0)}([function(e,t){&quot;use strict&quot;;Object.defineProperty(t,&quot;__esModule&quot;,{value:!0});var i=window;t[&quot;default&quot;]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&amp;&amp;parseInt(l[1].split(&quot;.&quot;).join(&quot;&quot;),10)&gt;=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&amp;&amp;d[1]&gt;534||c||(s=1);var u=1/s,m=r.querySelector(&apos;meta[name=&quot;viewport&quot;]&apos;);m||(m=r.createElement(&quot;meta&quot;),m.setAttribute(&quot;name&quot;,&quot;viewport&quot;),r.head.appendChild(m)),m.setAttribute(&quot;content&quot;,&quot;width=device-width,user-scalable=no,initial-scale=&quot;+u+&quot;,maximum-scale=&quot;+u+&quot;,minimum-scale=&quot;+u),r.documentElement.style.fontSize=a/2*s*n+&quot;px&quot;},e.exports=t[&quot;default&quot;]}]);
 flex(100, 1);
 </code></pre><p>附未压缩的<a href="https://os.alipayobjects.com/rmsportal/XKeZwTvyfsCqhRfcVIAY.js" title="源码链接" target="_blank" rel="external">源码链接</a></p>
@@ -271,18 +278,15 @@ flex(100, 1);
 done();
 </code></pre><p>  });<br>  gulp.task(‘default’, [‘doublepx’]);</p>
 </li>
-<li><p>•    随后新的样式值都写成和视觉稿上标注的值（视觉稿标注一般以设备物理点为单位，像 iPhone6 屏幕 750 的宽度）一样即可。</p>
-</li>
-<li><p>•    对于使用 webpack 的项目，在webpack.config.js里新增pxtorem配置、代码如下：</p>
-<p>   const pxtorem = require(‘postcss-pxtorem’);</p>
-<pre><code>webpackConfig.postcss.push(pxtorem({
-  rootValue: 100,
-  propWhiteList: [],
-}));
-</code></pre></li>
-<li><p>•    至此，高清方案设置完毕（过程中相关依赖请自行npm install）。</p>
-</li>
 </ul>
+<p>•    随后新的样式值都写成和视觉稿上标注的值（视觉稿标注一般以设备物理点为单位，像 iPhone6 屏幕 750 的宽度）一样即可。</p>
+<p>•    对于使用 webpack 的项目，在webpack.config.js里新增pxtorem配置、代码如下：</p>
+<pre><code>const pxtorem = require(&apos;postcss-pxtorem&apos;);
+ webpackConfig.postcss.push(pxtorem({
+   rootValue: 100,
+   propWhiteList: [],
+ }));
+</code></pre><p>•    至此，高清方案设置完毕（过程中相关依赖请自行npm install）。</p>
 
         
         </div>
@@ -293,7 +297,7 @@ done();
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciyxo2q2p0000qbseil3etk0a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciyxo6zjd0004sdse28hn1tfz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
