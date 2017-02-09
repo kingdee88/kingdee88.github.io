@@ -3,14 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 前端 | KD blog</title>
+    <title>个重要用途 | KD blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="KD blog">
-<meta property="og:url" content="https://kingdee88.github.io/tags/前端/index.html">
+    <meta name="description" content="前言由于ES6和Babel的出现，编写JavaScript代码变得难以置信的灵活，从新的语法到自定的编译器，像JSX。我变成了扩展运算符(Spread Operator)的超级粉丝，三个点就改变你编写JavaScript代码的方式。接下来的清单，列出了我在JavaScript中最喜欢怎样使用扩展运算符！
+1.不使用Apply去调用函数这一点我们叫它Function.prototype.apply，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="个重要用途">
+<meta property="og:url" content="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/index.html">
 <meta property="og:site_name" content="KD blog">
+<meta property="og:description" content="前言由于ES6和Babel的出现，编写JavaScript代码变得难以置信的灵活，从新的语法到自定的编译器，像JSX。我变成了扩展运算符(Spread Operator)的超级粉丝，三个点就改变你编写JavaScript代码的方式。接下来的清单，列出了我在JavaScript中最喜欢怎样使用扩展运算符！
+1.不使用Apply去调用函数这一点我们叫它Function.prototype.apply，">
+<meta property="og:updated_time" content="2017-02-09T09:17:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KD blog">
+<meta name="twitter:title" content="个重要用途">
+<meta name="twitter:description" content="前言由于ES6和Babel的出现，编写JavaScript代码变得难以置信的灵活，从新的语法到自定的编译器，像JSX。我变成了扩展运算符(Spread Operator)的超级粉丝，三个点就改变你编写JavaScript代码的方式。接下来的清单，列出了我在JavaScript中最喜欢怎样使用扩展运算符！
+1.不使用Apply去调用函数这一点我们叫它Function.prototype.apply，">
     
 
     
@@ -193,25 +200,21 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#前端</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="扩展运算符的6-扩展运算符的6个重要用途" class="article article-type-扩展运算符的6" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/02/09/扩展运算符的6个重要用途/">个重要用途</a>
+        <h1 class="article-title" itemprop="name">
+            个重要用途
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2017/02/09/扩展运算符的6个重要用途/">
@@ -220,116 +223,146 @@
     </div>
 
 
-                    
-                    
+                        
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/技巧/">技巧</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/02/09/以上版本「高清」方案设置/">以上版本「高清」方案设置</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>由于ES6和Babel的出现，编写JavaScript代码变得难以置信的灵活，从新的语法到自定的编译器，像JSX。我变成了扩展运算符(Spread Operator)的超级粉丝，三个点就改变你编写JavaScript代码的方式。接下来的清单，列出了我在JavaScript中最喜欢怎样使用扩展运算符！</p>
+<h3 id="1-不使用Apply去调用函数"><a href="#1-不使用Apply去调用函数" class="headerlink" title="1.不使用Apply去调用函数"></a>1.不使用Apply去调用函数</h3><p>这一点我们叫它<code>Function.prototype.apply</code>，传递一个参数数组，调用一个函数，并把数组中的每一项拆分成单个参数传递给函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">`function doStuff (x, y, z) &#123; &#125;</div><div class="line">var args = [0, 1, 2]();</div><div class="line"></div><div class="line">// 调用函数，传递参数</div><div class="line">doStuff.apply(null, args);</div></pre></td></tr></table></figure>
+<p><code>通过扩展运算符我们可以避免使用</code>apply`，只需简单的调用函数，并在参数数组前加上扩展运算符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`doStuff(...args);</div></pre></td></tr></table></figure>
+<p><code>这让代码更简短、清晰，而且不需要无用的</code>null！`</p>
+<h3 id="2-合并数组"><a href="#2-合并数组" class="headerlink" title="2.合并数组"></a>2.合并数组</h3><p>一直以来，有很多方法<a href="https://davidwalsh.name/combining-js-arrays" target="_blank" rel="external"> 合并数组 </a>，但是扩展运算符给了我们全新的方法去实现合并数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">`arr1.push(...arr2) // 把arr2合并到arr1的后面</div><div class="line">arr1.unshift(...arr2) //把arr2合并到arr1的前面</div></pre></td></tr></table></figure>
+<p>`<br>如果你想在数组内合并数组，你可以像下面这样做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">`var arr1 = [&apos;two&apos;, &apos;three&apos;]();</div><div class="line">var arr2 = [&apos;one&apos;, ...arr1, &apos;four&apos;, &apos;five&apos;]();</div><div class="line"></div><div class="line">// [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]()</div></pre></td></tr></table></figure>
+<p>`<br>比其他方法的语法更简单，还增加了位置的控制</p>
+<h3 id="3-复制数组"><a href="#3-复制数组" class="headerlink" title="3.复制数组"></a>3.复制数组</h3><p>复制数组是我们常常要做的工作，在过去，我们会使用<code>Array.prototype.slice</code>去实现，但现在我们可以使用扩展运算符去得到一个复制后的数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">`var arr = [1,2,3]();</div><div class="line">var arr2 = [...arr](); // 就像 arr.slice()</div><div class="line">arr2.push(4)</div></pre></td></tr></table></figure>
+<p>`</p>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/02/09/以上版本「高清」方案设置/">
-            <time datetime="2017-02-09T00:38:52.000Z" itemprop="datePublished">2017-02-09</time>
-        </a>
-    </div>
-
-
-                    
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/效率/">效率</a>, <a class="tag-link" href="/tags/移动/">移动</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/02/07/gulp和webpack的完美结合/">gulp和webpack的完美结合</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/02/07/gulp和webpack的完美结合/">
-            <time datetime="2017-02-07T07:29:31.000Z" itemprop="datePublished">2017-02-07</time>
-        </a>
-    </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
 
-                    
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/工具/">工具</a>
-    </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/02/07/H5项目常见问题汇总及解决方案/">H5项目常见问题汇总及解决方案</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/02/07/H5项目常见问题汇总及解决方案/">
-            <time datetime="2017-02-07T05:39:03.000Z" itemprop="datePublished">2017-02-07</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/优化/">优化</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/快捷方式/">快捷方式</a>, <a class="tag-link" href="/tags/效率/">效率</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
 </div>
+
+    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="ciyy67siw000l4fh5z00oz4j6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/02/09/以上版本「高清」方案设置/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">以上版本「高清」方案设置</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
 </section>
             
                 <aside id="sidebar">
@@ -490,11 +523,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = 'undefined';
+            this.page.url = 'https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/';
+        
+        this.page.identifier = '扩展运算符的6个重要用途';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/count.js';
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();

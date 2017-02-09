@@ -19,7 +19,7 @@
 &amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;head&amp;gt;
  &amp;lt;meta charset=&amp;qu">
-<meta property="og:updated_time" content="2017-02-09T00:52:42.000Z">
+<meta property="og:updated_time" content="2017-02-09T01:06:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="以上版本「高清」方案设置">
 <meta name="twitter:description" content="何为高清高清就是在高清屏的手机上，1px实际显示的物理像素不为1，到时页面显示是会有1px的像素偏差，尤其是边框，比较影响页面的显示效果
@@ -159,11 +159,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                3
+                4
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                5
+                6
                 <span>标签</span>
             </div>
         </div>
@@ -261,25 +261,28 @@
 <pre><code>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p=&quot;&quot;,t(0)}([function(e,t){&quot;use strict&quot;;Object.defineProperty(t,&quot;__esModule&quot;,{value:!0});var i=window;t[&quot;default&quot;]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&amp;&amp;parseInt(l[1].split(&quot;.&quot;).join(&quot;&quot;),10)&gt;=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&amp;&amp;d[1]&gt;534||c||(s=1);var u=1/s,m=r.querySelector(&apos;meta[name=&quot;viewport&quot;]&apos;);m||(m=r.createElement(&quot;meta&quot;),m.setAttribute(&quot;name&quot;,&quot;viewport&quot;),r.head.appendChild(m)),m.setAttribute(&quot;content&quot;,&quot;width=device-width,user-scalable=no,initial-scale=&quot;+u+&quot;,maximum-scale=&quot;+u+&quot;,minimum-scale=&quot;+u),r.documentElement.style.fontSize=a/2*s*n+&quot;px&quot;},e.exports=t[&quot;default&quot;]}]);
 flex(100, 1);
 </code></pre><p>附未压缩的<a href="https://os.alipayobjects.com/rmsportal/XKeZwTvyfsCqhRfcVIAY.js" title="源码链接" target="_blank" rel="external">源码链接</a></p>
-<ul>
-<li><p>•    『新项目忽略』在已有的未做类似高清方案的项目 less 文件中对 px 单位做 2 倍处理，可以使用 gulp 脚本（如果不是使用 gulp，则推荐使用 webpack，相应配置方法见下条），在 gulpfile.js 加入以下代码：</p>
-<p>  var gulp = require(‘gulp’);<br>  var replace = require(‘gulp-replace’);<br>  var gulpif = require(‘gulp-if’);<br>  var exec = require(‘child_process’).exec;<br>  var srcFiles = [</p>
-<pre><code>&apos;./src/**/*.less&apos;
-</code></pre><p>  ];<br>  gulp.task(‘doublepx’, function(done){</p>
-<pre><code>gulp.src(srcFiles)
-  .pipe(gulpif(true, replace(/[&apos;&quot;](\d+)px[&apos;&quot;]|\b(\d+)px\b/g, function(pixel) {
-    console.log(pixel, &apos;=&gt;&apos;, ( parseInt(pixel) * 2 ) + &apos;px&apos;);
-    if ( /&apos;|&quot;/.test(pixel) || &apos;0px&apos;== pixel || &apos;1px&apos; == pixel) {
-      return pixel;
-    }
-    return ( parseInt(pixel) * 2 ) + &apos;px&apos;;
-  })))
-  .pipe(gulp.dest(&apos;./src&apos;));
-done();
-</code></pre><p>  });<br>  gulp.task(‘default’, [‘doublepx’]);</p>
-</li>
-</ul>
-<p>•    随后新的样式值都写成和视觉稿上标注的值（视觉稿标注一般以设备物理点为单位，像 iPhone6 屏幕 750 的宽度）一样即可。</p>
+<p>•    『新项目忽略』在已有的未做类似高清方案的项目 less 文件中对 px 单位做 2 倍处理，可以使用 gulp 脚本（如果不是使用 gulp，则推荐使用 webpack，相应配置方法见下条），在 gulpfile.js 加入以下代码：</p>
+<pre><code>var gulp = require(&apos;gulp&apos;);
+var replace = require(&apos;gulp-replace&apos;);
+var gulpif = require(&apos;gulp-if&apos;);
+var exec = require(&apos;child_process&apos;).exec;
+var srcFiles = [
+  &apos;./src/**/*.less&apos;
+];
+gulp.task(&apos;doublepx&apos;, function(done){
+  gulp.src(srcFiles)
+    .pipe(gulpif(true, replace(/[&apos;&quot;](\d+)px[&apos;&quot;]|\b(\d+)px\b/g, function(pixel) {
+      console.log(pixel, &apos;=&gt;&apos;, ( parseInt(pixel) * 2 ) + &apos;px&apos;);
+      if ( /&apos;|&quot;/.test(pixel) || &apos;0px&apos;== pixel || &apos;1px&apos; == pixel) {
+        return pixel;
+      }
+      return ( parseInt(pixel) * 2 ) + &apos;px&apos;;
+    })))
+    .pipe(gulp.dest(&apos;./src&apos;));
+  done();
+});
+gulp.task(&apos;default&apos;, [&apos;doublepx&apos;]);
+</code></pre><p>•    随后新的样式值都写成和视觉稿上标注的值（视觉稿标注一般以设备物理点为单位，像 iPhone6 屏幕 750 的宽度）一样即可。</p>
 <p>•    对于使用 webpack 的项目，在webpack.config.js里新增pxtorem配置、代码如下：</p>
 <pre><code>const pxtorem = require(&apos;postcss-pxtorem&apos;);
  webpackConfig.postcss.push(pxtorem({
@@ -297,7 +300,7 @@ done();
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciyxo6zjd0004sdse28hn1tfz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciyy67sh600014fh5iyfutbri" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -374,6 +377,15 @@ done();
         
 <nav id="article-nav">
     
+        <a href="/2017/02/09/扩展运算符的6个重要用途/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    个重要用途
+                
+            </div>
+        </a>
+    
     
         <a href="/2017/02/07/gulp和webpack的完美结合/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
@@ -407,6 +419,25 @@ done();
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/02/09/扩展运算符的6个重要用途/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/02/09/扩展运算符的6个重要用途/" class="title">个重要用途</a></p>
+                            <p class="item-date"><time datetime="2017-02-09T09:12:04.000Z" itemprop="datePublished">2017-02-09</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -483,7 +514,7 @@ done();
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -492,7 +523,7 @@ done();
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷方式/">快捷方式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动/">移动</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷方式/">快捷方式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动/">移动</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -501,7 +532,7 @@ done();
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/快捷方式/" style="font-size: 10px;">快捷方式</a> <a href="/tags/效率/" style="font-size: 15px;">效率</a> <a href="/tags/移动/" style="font-size: 10px;">移动</a>
+            <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/快捷方式/" style="font-size: 10px;">快捷方式</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/效率/" style="font-size: 15px;">效率</a> <a href="/tags/移动/" style="font-size: 10px;">移动</a>
         </div>
     </div>
 
