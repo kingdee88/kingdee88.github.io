@@ -143,11 +143,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                4
+                5
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                6
+                7
                 <span>标签</span>
             </div>
         </div>
@@ -194,6 +194,269 @@
 
             
             <section id="main">
+    <article id="post-彻底理解JS中this的指向" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/02/10/彻底理解JS中this的指向/">彻底理解JS中this的指向</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/02/10/彻底理解JS中this的指向/">
+            <time datetime="2017-02-10T01:34:40.000Z" itemprop="datePublished">2017-02-10</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/前端/">前端</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>首先必须要说的是，this的指向在函数定义的时候是确定不了的，只有函数执行的时候才能确定this到底指向谁，实际上this的最终指向的是那个调用它的对象（这句话有些问题，后面会解释为什么会有问题，虽然网上大部分的文章都是这样说的，虽然在很多情况下那样去理解不会出什么问题，但是实际上那样理解是不准确的，所以在你理解this的时候会有种琢磨不透的感觉），那么接下来我会深入的探讨这个问题。</p>
+<p>为什么要学习this？如果你学过函数式编程，面向对象编程，那你肯定知道干什么用的，如果你没有学过，那么暂时可以不用看这篇文章，当然如果你有兴趣也可以看看，毕竟这是js中必须要掌握的东西。</p>
+<h3 id="例子1："><a href="#例子1：" class="headerlink" title="例子1："></a>例子1：</h3><pre><code>function a(){
+    var user = &quot;追梦子&quot;;
+    console.log(this.user); //undefined
+    console.log(this); //Window
+}
+a();
+</code></pre><p>按照我们上面说的this最终指向的是调用它的对象，这里的函数a实际是被Window对象所点出来的，下面的代码就可以证明</p>
+<pre><code>function a(){
+    var user = &quot;追梦子&quot;;
+    console.log(this.user); //undefined
+    console.log(this);　　//Window
+}
+window.a();
+</code></pre><p>和上面代码一样吧，其实alert也是window的一个属性，也是window点出来的。</p>
+<h3 id="例子2："><a href="#例子2：" class="headerlink" title="例子2："></a>例子2：</h3><pre><code>var o = {
+    user:&quot;追梦子&quot;,
+    fn:function(){
+        console.log(this.user);  //追梦子
+    }
+}
+o.fn();
+</code></pre><p>这里的this指向的是对象o，因为你调用这个fn是通过o.fn()执行的，那自然指向就是对象o，这里再次强调一点，this的指向在函数创建的时候是决定不了的，在调用的时候才能决定，谁调用的就指向谁，一定要搞清楚这个。</p>
+<p>其实例子1和例子2说的并不够准确，下面这个例子就可以推翻上面的理论。</p>
+<p>如果要彻底的搞懂this必须看接下来的几个例子</p>
+<h3 id="例子3："><a href="#例子3：" class="headerlink" title="例子3："></a>例子3：</h3><pre><code>var o = {
+    user:&quot;追梦子&quot;,
+    fn:function(){
+        console.log(this.user); //追梦子
+    }
+}
+window.o.fn();
+</code></pre><p>这段代码和上面的那段代码几乎是一样的，但是这里的this为什么不是指向window，如果按照上面的理论，最终this指向的是调用它的对象，这里先说个而外话，window是js中的全局对象，我们创建的变量实际上是给window添加属性，所以这里可以用window点o对象。</p>
+<p>这里先不解释为什么上面的那段代码this为什么没有指向window，我们再来看一段代码。</p>
+<pre><code>var o = {
+    a:10,
+    b:{
+        a:12,
+        fn:function(){
+            console.log(this.a); //12
+        }
+    }
+}
+o.b.fn();
+</code></pre><p>这里同样也是对象o点出来的，但是同样this并没有执行它，那你肯定会说我一开始说的那些不就都是错误的吗？其实也不是，只是一开始说的不准确，接下来我将补充一句话，我相信你就可以彻底的理解this的指向的问题。</p>
+<p>情况1：如果一个函数中有this，但是它没有被上一级的对象所调用，那么this指向的就是window，这里需要说明的是在js的严格版中this指向的不是window，但是我们这里不探讨严格版的问题，你想了解可以自行上网查找。</p>
+<p>情况2：如果一个函数中有this，这个函数有被上一级的对象所调用，那么this指向的就是上一级的对象。</p>
+<p>情况3：如果一个函数中有this，这个函数中包含多个对象，尽管这个函数是被最外层的对象所调用，this指向的也只是它上一级的对象，例子3可以证明，如果不相信，那么接下来我们继续看几个例子。</p>
+<pre><code>var o = {
+    a:10,
+    b:{
+        // a:12,
+        fn:function(){
+            console.log(this.a); //undefined
+        }
+    }
+}
+o.b.fn();
+</code></pre><p>尽管对象b中没有属性a，这个this指向的也是对象b，因为this只会指向它的上一级对象，不管这个对象中有没有this要的东西。</p>
+<h3 id="还有一种比较特殊的情况，例子4："><a href="#还有一种比较特殊的情况，例子4：" class="headerlink" title="还有一种比较特殊的情况，例子4："></a>还有一种比较特殊的情况，例子4：</h3><pre><code>var o = {
+    a:10,
+    b:{
+        a:12,
+        fn:function(){
+            console.log(this.a); //undefined
+            console.log(this); //window
+        }
+    }
+}
+var j = o.b.fn;
+j();
+</code></pre><p>这里this指向的是window，是不是有些蒙了？其实是因为你没有理解一句话，这句话同样至关重要。</p>
+<p>this永远指向的是最后调用它的对象，也就是看它执行的时候是谁调用的，例子4中虽然函数fn是被对象b所引用，但是在将fn赋值给变量j的时候并没有执行所以最终指向的是window，这和例子3是不一样的，例子3是直接执行了fn。</p>
+<p>his讲来讲去其实就是那么一回事，只不过在不同的情况下指向的会有些不同，上面的总结每个地方都有些小错误，也不能说是错误，而是在不同环境下情况就会有不同，所以我也没有办法一次解释清楚，只能你慢慢地的去体会。</p>
+<h3 id="构造函数版this："><a href="#构造函数版this：" class="headerlink" title="构造函数版this："></a>构造函数版this：</h3><pre><code>function Fn(){
+    this.user = &quot;追梦子&quot;;
+}
+var a = new Fn();
+console.log(a.user); //追梦子
+</code></pre><p>这里之所以对象a可以点出函数Fn里面的user是因为new关键字可以改变this的指向，将这个this指向对象a，为什么我说a是对象，因为用了new关键字就是创建一个对象实例，理解这句话可以想想我们的例子3，我们这里用变量a创建了一个Fn的实例（相当于复制了一份Fn到对象a里面），此时仅仅只是创建，并没有执行，而调用这个函数Fn的是对象a，那么this指向的自然是对象a，那么为什么对象Fn中会有user，因为你已经复制了一份Fn函数到对象a中，用了new关键字就等同于复制了一份。<br>除了上面的这些以外，我们还可以自行改变this的指向，关于自行改变this的指向请看JavaScript中<a href="http://www.cnblogs.com/pssp/p/5215621.html" target="_blank" rel="external">call,apply,bind</a>方法的总结这篇文章，详细的说明了我们如何手动更改this的指向。</p>
+<h3 id="更新一个小问题当this碰到return时"><a href="#更新一个小问题当this碰到return时" class="headerlink" title="更新一个小问题当this碰到return时"></a>更新一个小问题当this碰到return时</h3><pre><code>function fn()  
+{  
+    this.user = &apos;追梦子&apos;;  
+    return {};  
+}
+var a = new fn;  
+console.log(a.user); //undefined
+</code></pre><p>再看一个</p>
+<pre><code>function fn()  
+{  
+    this.user = &apos;追梦子&apos;;  
+    return function(){};
+}
+var a = new fn;  
+console.log(a.user); //undefined
+</code></pre><p>再来</p>
+<pre><code>function fn()  
+{  
+    this.user = &apos;追梦子&apos;;  
+    return 1;
+}
+var a = new fn;  
+console.log(a.user); //追梦子
+
+function fn()  
+{  
+    this.user = &apos;追梦子&apos;;  
+    return undefined;
+}
+var a = new fn;  
+console.log(a.user); //追梦子
+</code></pre><p>什么意思呢？</p>
+<p>**如果返回值是一个对象，那么this指向的就是那个返回的对象，如果返回值不是一个对象那么this还是指向函数的实例。</p>
+<pre><code>function fn()  
+{  
+    this.user = &apos;追梦子&apos;;  
+    return undefined;
+}
+var a = new fn;  
+console.log(a); //fn {user: &quot;追梦子&quot;}
+</code></pre><p>还有一点就是虽然null也是对象，但是在这里this还是指向那个函数的实例，因为null比较特殊。</p>
+<pre><code>function fn()  
+{  
+    this.user = &apos;追梦子&apos;;  
+    return null;
+}
+var a = new fn;  
+console.log(a.user); //追梦子
+</code></pre><h3 id="知识点补充："><a href="#知识点补充：" class="headerlink" title="知识点补充："></a>知识点补充：</h3><p>1.在严格版中的默认的this不再是window，而是undefined。</p>
+<p>2.new操作符会改变函数this的指向问题，虽然我们上面讲解过了，但是并没有深入的讨论这个问题，网上也很少说，所以在这里有必要说一下。  </p>
+<pre><code>function fn(){
+    this.num = 1;
+}
+var a = new fn();
+console.log(a.num); //1
+</code></pre><p>为什么this会指向a？首先new关键字会创建一个空的对象，然后会自动调用一个函数apply方法，将this指向这个空对象，这样的话函数内部的this就会被这个空的对象替代。</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/" data-id="ciyz56mkg0004yaemmyfo3d0e" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="扩展运算符的6-扩展运算符的6个重要用途" class="article article-type-扩展运算符的6" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -202,7 +465,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2017/02/09/扩展运算符的6个重要用途/">扩展运算符的6个重要用途</a>
+            <a class="article-title" href="/2017/02/09/扩展运算符的6个重要用途/">个重要用途</a>
         </h1>
     
 
@@ -256,7 +519,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="ciyy6a87x0005d1h5lwkn9ffr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="ciyz56mkl0006yaem34rp57rj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -425,7 +688,7 @@ gulp.task(&apos;default&apos;, [&apos;doublepx&apos;]);
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciyy6a87u0003d1h5bjsuac7v" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciyz56mki0005yaemz3p3gnxb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -664,7 +927,7 @@ module.exports = {
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/07/gulp和webpack的完美结合/" data-id="ciyy6a87h0000d1h53f8jf8k8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/07/gulp和webpack的完美结合/" data-id="ciyz56mka0001yaemdzd3mib1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -868,7 +1131,7 @@ module.exports = {
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/07/H5项目常见问题汇总及解决方案/" data-id="ciyy6a87n0001d1h51o4pvzr7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/07/H5项目常见问题汇总及解决方案/" data-id="ciyz56mk60000yaemhfg3aunt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -958,6 +1221,25 @@ module.exports = {
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/02/10/彻底理解JS中this的指向/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/02/10/彻底理解JS中this的指向/" class="title">彻底理解JS中this的指向</a></p>
+                            <p class="item-date"><time datetime="2017-02-10T01:34:40.000Z" itemprop="datePublished">2017-02-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/02/09/扩展运算符的6个重要用途/" class="thumbnail">
     
     
@@ -969,7 +1251,7 @@ module.exports = {
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/02/09/扩展运算符的6个重要用途/" class="title">扩展运算符的6个重要用途</a></p>
+                            <p class="item-title"><a href="/2017/02/09/扩展运算符的6个重要用途/" class="title">个重要用途</a></p>
                             <p class="item-date"><time datetime="2017-02-09T09:12:04.000Z" itemprop="datePublished">2017-02-09</time></p>
                         </div>
                     </li>
@@ -1049,7 +1331,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">4</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">5</span></li></ul>
         </div>
     </div>
 
@@ -1058,7 +1340,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷方式/">快捷方式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动/">移动</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷方式/">快捷方式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动/">移动</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1067,7 +1349,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/快捷方式/" style="font-size: 10px;">快捷方式</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/效率/" style="font-size: 15px;">效率</a> <a href="/tags/移动/" style="font-size: 10px;">移动</a>
+            <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/快捷方式/" style="font-size: 10px;">快捷方式</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/效率/" style="font-size: 15px;">效率</a> <a href="/tags/移动/" style="font-size: 10px;">移动</a>
         </div>
     </div>
 
