@@ -143,7 +143,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                5
+                6
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -194,6 +194,153 @@
 
             
             <section id="main">
+    <article id="javascript-缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串" class="article article-type-javascript" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/">缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/">
+            <time datetime="2017-02-17T01:07:56.000Z" itemprop="datePublished">2017-02-17</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/技巧/">技巧</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>因为平时在写代码的过程中，有些算法会经常重复写，比如数组去重、数组抽取随机值等！虽然这些不是很难的逻辑，但是每次刚开始遇到需求的时候，还是需要琢磨一些时间才能想出来，所以此文档把这些常见算法的思想记录下来，以便下次再遇到的时候不会手脚无措了！</li>
+</ul>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><ul>
+<li><p>我们这里不考虑数组上的一个自带的过滤算法，比如map、filter等方法！数组去重的关键是需要一个中间数组来存数组来帮助实现数组去重！</p>
+</li>
+<li><p>方法一：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="string">`var arr = [1,2,3,1,1,1,1]();</span></div><div class="line">function toHeavy(array)&#123;</div><div class="line">//这是一个缓存对象，用来实现过滤到重复的数据</div><div class="line">var cache = &#123;&#125;;</div><div class="line">//定义一个中间数组，用来实现当容器</div><div class="line">var cacheArr = []();</div><div class="line">for(var i = 0,len = array.length;i\&lt;len;i++)&#123;</div><div class="line">if(!cache[array\[i]()])&#123;</div><div class="line">cacheArr.push(array[i]());</div><div class="line">cache[array\[i]()] = array[i]();</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line">return cacheArr;</div><div class="line">&#125;;</div><div class="line">arr = toHeavy(arr);//arr ==  [1,2,3]()</div></pre></td></tr></table></figure>
+<p>`</p>
+<ul>
+<li>方法二：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="string">`//其实思想跟第一个差不多</span></div><div class="line">var arr = [1,2,3,1,1,1,1,1,1]();</div><div class="line">function toHeavy(array)&#123;</div><div class="line">var cache = []();</div><div class="line">for(var i = 0,len = array.length;i\&lt;len;i++)&#123;</div><div class="line">//用闭包，防止isHeavy向外部暴露</div><div class="line">//因为js中没有块级作用域</div><div class="line">(function()&#123;</div><div class="line">var isHeavy = false;</div><div class="line">for(var j = 0,_len = cache.length;j\&lt;_len;j++)&#123;</div><div class="line">if(cache[j]() == array[i]())&#123;</div><div class="line">isHeavy = true;</div><div class="line">break;</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line">if(!isHeavy)&#123;</div><div class="line">//如果不是重复的，那么就执行把当前值推送的cache里面</div><div class="line">cache.push(array[i]());</div><div class="line">&#125;;</div><div class="line">&#125;)();</div><div class="line">&#125;;</div><div class="line">return cache;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">arr = toHeavy(arr);</div></pre></td></tr></table></figure>
+<p>`<br>最后说一句，现实中的数据肯定不会这么简单，可能会是一个稍微复杂的数据，要给这些数组去重你也不要被吓住，其实原理是一样的，只是你被迷惑了而已！</p>
+<h3 id="在一个数组中随机抽取一部分值"><a href="#在一个数组中随机抽取一部分值" class="headerlink" title="在一个数组中随机抽取一部分值"></a>在一个数组中随机抽取一部分值</h3><ul>
+<li>这个算法的关键要使用Math.random，不说了直接上代码:</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="string">`var arr = ['小明','小红','小陈','小于','小兰','小法','小p','小张','小镇','小王','傻逼','怂逼']();</span></div><div class="line"></div><div class="line">function getArr(num,array)&#123;</div><div class="line">//num表示要去多少个，它不能大于要取的那个数组的最大长度，如果超过了那么就等于它的长度</div><div class="line">var aLength = array.length;</div><div class="line">if(num\&gt;=aLength)&#123;</div><div class="line">num = aLength;</div><div class="line">&#125;;</div><div class="line">var cacheArr = []();</div><div class="line">//我们用一个数组保存原来的数组</div><div class="line">//记住千万能直接赋值，因为数组是一个引用，这样不能保持原来的数组</div><div class="line">var originArr = (function()&#123;</div><div class="line">var arr = []();</div><div class="line">for(var i = 0,len = array.length;i\&lt;len;i++)&#123;</div><div class="line">arr.push(array[i]());</div><div class="line">&#125;;</div><div class="line">return arr;</div><div class="line">&#125;)();</div><div class="line">for(var i = 0;i\&lt;num;i++)&#123;</div><div class="line">//array.length不能写成上面的aLength，因为aLength是固定的值，而array.length随着array的改变是自动更新的</div><div class="line">//Math.random() * array.length得到的是一个介于长度和零之间的一个值，包括0但不包含长度值</div><div class="line">//我们算出的是一个浮点值，所以我们必须把它转化成整数</div><div class="line">//因为不能超过最大长度值，所以应该向下取整</div><div class="line">var _index = Math.floor(Math.random() * array.length);</div><div class="line">cacheArr.push(array[_index]());</div><div class="line">//记住一定，取出来之后，一定删除原来位置上的数组值</div><div class="line">//要不然数组更新不了</div><div class="line">array.splice(_index,1);</div><div class="line">&#125;;</div><div class="line">//取回原来的数组</div><div class="line">array = originArr;</div><div class="line">console.log(array);</div><div class="line">return cacheArr;</div><div class="line">&#125;;</div><div class="line">var brr = getArr(5,arr);</div></pre></td></tr></table></figure>
+<p>`</p>
+<h3 id="得到某个区间的字母组成的数组"><a href="#得到某个区间的字母组成的数组" class="headerlink" title="得到某个区间的字母组成的数组"></a>得到某个区间的字母组成的数组</h3>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/" data-id="ciz94blak0004iwemmwy47zib" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-彻底理解JS中this的指向" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -379,7 +526,7 @@ console.log(a.num); //1
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/" data-id="ciyz56mkg0004yaemmyfo3d0e" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/" data-id="ciz94blar0008iwemb1xytnod" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -519,7 +666,7 @@ console.log(a.num); //1
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="ciyz56mkl0006yaem34rp57rj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="ciz94blap0006iwemcir1pkvo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -688,7 +835,7 @@ gulp.task(&apos;default&apos;, [&apos;doublepx&apos;]);
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciyz56mki0005yaemz3p3gnxb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="ciz94blan0005iwem9f8k420x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -927,7 +1074,7 @@ module.exports = {
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/07/gulp和webpack的完美结合/" data-id="ciyz56mka0001yaemdzd3mib1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/07/gulp和webpack的完美结合/" data-id="ciz94blac0001iwemp2bgynlx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1131,7 +1278,7 @@ module.exports = {
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/07/H5项目常见问题汇总及解决方案/" data-id="ciyz56mk60000yaemhfg3aunt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/07/H5项目常见问题汇总及解决方案/" data-id="ciz94bla70000iwembt4teq3q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1221,6 +1368,25 @@ module.exports = {
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/" class="title">缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串</a></p>
+                            <p class="item-date"><time datetime="2017-02-17T01:07:56.000Z" itemprop="datePublished">2017-02-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/02/10/彻底理解JS中this的指向/" class="thumbnail">
     
     
@@ -1294,25 +1460,6 @@ module.exports = {
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/02/07/H5项目常见问题汇总及解决方案/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/优化/">优化</a></p>
-                            <p class="item-title"><a href="/2017/02/07/H5项目常见问题汇总及解决方案/" class="title">H5项目常见问题汇总及解决方案</a></p>
-                            <p class="item-date"><time datetime="2017-02-07T05:39:03.000Z" itemprop="datePublished">2017-02-07</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1331,7 +1478,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">5</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -1340,7 +1487,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷方式/">快捷方式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动/">移动</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷方式/">快捷方式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动/">移动</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1349,7 +1496,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/快捷方式/" style="font-size: 10px;">快捷方式</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/效率/" style="font-size: 15px;">效率</a> <a href="/tags/移动/" style="font-size: 10px;">移动</a>
+            <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/快捷方式/" style="font-size: 10px;">快捷方式</a> <a href="/tags/技巧/" style="font-size: 15px;">技巧</a> <a href="/tags/效率/" style="font-size: 15px;">效率</a> <a href="/tags/移动/" style="font-size: 10px;">移动</a>
         </div>
     </div>
 

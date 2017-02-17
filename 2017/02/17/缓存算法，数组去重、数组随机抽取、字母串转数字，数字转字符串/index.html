@@ -3,21 +3,30 @@
 <head>
     <meta charset="utf-8">
     
-    <title>个重要用途 | KD blog</title>
+    <title>缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串 | KD blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="前言由于ES6和Babel的出现，编写JavaScript代码变得难以置信的灵活，从新的语法到自定的编译器，像JSX。我变成了扩展运算符(Spread Operator)的超级粉丝，三个点就改变你编写JavaScript代码的方式。接下来的清单，列出了我在JavaScript中最喜欢怎样使用扩展运算符！
-1.不使用Apply去调用函数这一点我们叫它Function.prototype.apply，">
+    <meta name="description" content="前言
+因为平时在写代码的过程中，有些算法会经常重复写，比如数组去重、数组抽取随机值等！虽然这些不是很难的逻辑，但是每次刚开始遇到需求的时候，还是需要琢磨一些时间才能想出来，所以此文档把这些常见算法的思想记录下来，以便下次再遇到的时候不会手脚无措了！
+
+数组去重
+我们这里不考虑数组上的一个自带的过滤算法，比如map、filter等方法！数组去重的关键是需要一个中间数组来存数组来帮助实现数组去重！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="个重要用途">
-<meta property="og:url" content="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/index.html">
+<meta property="og:title" content="缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串">
+<meta property="og:url" content="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/index.html">
 <meta property="og:site_name" content="KD blog">
-<meta property="og:description" content="前言由于ES6和Babel的出现，编写JavaScript代码变得难以置信的灵活，从新的语法到自定的编译器，像JSX。我变成了扩展运算符(Spread Operator)的超级粉丝，三个点就改变你编写JavaScript代码的方式。接下来的清单，列出了我在JavaScript中最喜欢怎样使用扩展运算符！
-1.不使用Apply去调用函数这一点我们叫它Function.prototype.apply，">
-<meta property="og:updated_time" content="2017-02-09T09:17:14.000Z">
+<meta property="og:description" content="前言
+因为平时在写代码的过程中，有些算法会经常重复写，比如数组去重、数组抽取随机值等！虽然这些不是很难的逻辑，但是每次刚开始遇到需求的时候，还是需要琢磨一些时间才能想出来，所以此文档把这些常见算法的思想记录下来，以便下次再遇到的时候不会手脚无措了！
+
+数组去重
+我们这里不考虑数组上的一个自带的过滤算法，比如map、filter等方法！数组去重的关键是需要一个中间数组来存数组来帮助实现数组去重！">
+<meta property="og:updated_time" content="2017-02-17T01:09:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="个重要用途">
-<meta name="twitter:description" content="前言由于ES6和Babel的出现，编写JavaScript代码变得难以置信的灵活，从新的语法到自定的编译器，像JSX。我变成了扩展运算符(Spread Operator)的超级粉丝，三个点就改变你编写JavaScript代码的方式。接下来的清单，列出了我在JavaScript中最喜欢怎样使用扩展运算符！
-1.不使用Apply去调用函数这一点我们叫它Function.prototype.apply，">
+<meta name="twitter:title" content="缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串">
+<meta name="twitter:description" content="前言
+因为平时在写代码的过程中，有些算法会经常重复写，比如数组去重、数组抽取随机值等！虽然这些不是很难的逻辑，但是每次刚开始遇到需求的时候，还是需要琢磨一些时间才能想出来，所以此文档把这些常见算法的思想记录下来，以便下次再遇到的时候不会手脚无措了！
+
+数组去重
+我们这里不考虑数组上的一个自带的过滤算法，比如map、filter等方法！数组去重的关键是需要一个中间数组来存数组来帮助实现数组去重！">
     
 
     
@@ -200,7 +209,7 @@
 </aside>
 
             
-            <section id="main"><article id="扩展运算符的6-扩展运算符的6个重要用途" class="article article-type-扩展运算符的6" itemscope itemprop="blogPost">
+            <section id="main"><article id="javascript-缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串" class="article article-type-javascript" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -208,7 +217,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            个重要用途
+            缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串
         </h1>
     
 
@@ -217,8 +226,8 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/02/09/扩展运算符的6个重要用途/">
-            <time datetime="2017-02-09T09:12:04.000Z" itemprop="datePublished">2017-02-09</time>
+        <a href="/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/">
+            <time datetime="2017-02-17T01:07:56.000Z" itemprop="datePublished">2017-02-17</time>
         </a>
     </div>
 
@@ -227,7 +236,7 @@
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/技巧/">技巧</a>
+        <a class="tag-link" href="/tags/javascript/">javascript</a>, <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/技巧/">技巧</a>
     </div>
 
                     </div>
@@ -238,21 +247,28 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>由于ES6和Babel的出现，编写JavaScript代码变得难以置信的灵活，从新的语法到自定的编译器，像JSX。我变成了扩展运算符(Spread Operator)的超级粉丝，三个点就改变你编写JavaScript代码的方式。接下来的清单，列出了我在JavaScript中最喜欢怎样使用扩展运算符！</p>
-<h3 id="1-不使用Apply去调用函数"><a href="#1-不使用Apply去调用函数" class="headerlink" title="1.不使用Apply去调用函数"></a>1.不使用Apply去调用函数</h3><p>这一点我们叫它<code>Function.prototype.apply</code>，传递一个参数数组，调用一个函数，并把数组中的每一项拆分成单个参数传递给函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">`function doStuff (x, y, z) &#123; &#125;</div><div class="line">var args = [0, 1, 2]();</div><div class="line"></div><div class="line">// 调用函数，传递参数</div><div class="line">doStuff.apply(null, args);</div></pre></td></tr></table></figure>
-<p><code>通过扩展运算符我们可以避免使用</code>apply`，只需简单的调用函数，并在参数数组前加上扩展运算符：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`doStuff(...args);</div></pre></td></tr></table></figure>
-<p><code>这让代码更简短、清晰，而且不需要无用的</code>null！`</p>
-<h3 id="2-合并数组"><a href="#2-合并数组" class="headerlink" title="2.合并数组"></a>2.合并数组</h3><p>一直以来，有很多方法<a href="https://davidwalsh.name/combining-js-arrays" target="_blank" rel="external"> 合并数组 </a>，但是扩展运算符给了我们全新的方法去实现合并数组：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">`arr1.push(...arr2) // 把arr2合并到arr1的后面</div><div class="line">arr1.unshift(...arr2) //把arr2合并到arr1的前面</div></pre></td></tr></table></figure>
-<p>`<br>如果你想在数组内合并数组，你可以像下面这样做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">`var arr1 = [&apos;two&apos;, &apos;three&apos;]();</div><div class="line">var arr2 = [&apos;one&apos;, ...arr1, &apos;four&apos;, &apos;five&apos;]();</div><div class="line"></div><div class="line">// [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]()</div></pre></td></tr></table></figure>
-<p>`<br>比其他方法的语法更简单，还增加了位置的控制</p>
-<h3 id="3-复制数组"><a href="#3-复制数组" class="headerlink" title="3.复制数组"></a>3.复制数组</h3><p>复制数组是我们常常要做的工作，在过去，我们会使用<code>Array.prototype.slice</code>去实现，但现在我们可以使用扩展运算符去得到一个复制后的数组：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">`var arr = [1,2,3]();</div><div class="line">var arr2 = [...arr](); // 就像 arr.slice()</div><div class="line">arr2.push(4)</div></pre></td></tr></table></figure>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>因为平时在写代码的过程中，有些算法会经常重复写，比如数组去重、数组抽取随机值等！虽然这些不是很难的逻辑，但是每次刚开始遇到需求的时候，还是需要琢磨一些时间才能想出来，所以此文档把这些常见算法的思想记录下来，以便下次再遇到的时候不会手脚无措了！</li>
+</ul>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><ul>
+<li><p>我们这里不考虑数组上的一个自带的过滤算法，比如map、filter等方法！数组去重的关键是需要一个中间数组来存数组来帮助实现数组去重！</p>
+</li>
+<li><p>方法一：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="string">`var arr = [1,2,3,1,1,1,1]();</span></div><div class="line">function toHeavy(array)&#123;</div><div class="line">//这是一个缓存对象，用来实现过滤到重复的数据</div><div class="line">var cache = &#123;&#125;;</div><div class="line">//定义一个中间数组，用来实现当容器</div><div class="line">var cacheArr = []();</div><div class="line">for(var i = 0,len = array.length;i\&lt;len;i++)&#123;</div><div class="line">if(!cache[array\[i]()])&#123;</div><div class="line">cacheArr.push(array[i]());</div><div class="line">cache[array\[i]()] = array[i]();</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line">return cacheArr;</div><div class="line">&#125;;</div><div class="line">arr = toHeavy(arr);//arr ==  [1,2,3]()</div></pre></td></tr></table></figure>
 <p>`</p>
-
+<ul>
+<li>方法二：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="string">`//其实思想跟第一个差不多</span></div><div class="line">var arr = [1,2,3,1,1,1,1,1,1]();</div><div class="line">function toHeavy(array)&#123;</div><div class="line">var cache = []();</div><div class="line">for(var i = 0,len = array.length;i\&lt;len;i++)&#123;</div><div class="line">//用闭包，防止isHeavy向外部暴露</div><div class="line">//因为js中没有块级作用域</div><div class="line">(function()&#123;</div><div class="line">var isHeavy = false;</div><div class="line">for(var j = 0,_len = cache.length;j\&lt;_len;j++)&#123;</div><div class="line">if(cache[j]() == array[i]())&#123;</div><div class="line">isHeavy = true;</div><div class="line">break;</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line">if(!isHeavy)&#123;</div><div class="line">//如果不是重复的，那么就执行把当前值推送的cache里面</div><div class="line">cache.push(array[i]());</div><div class="line">&#125;;</div><div class="line">&#125;)();</div><div class="line">&#125;;</div><div class="line">return cache;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">arr = toHeavy(arr);</div></pre></td></tr></table></figure>
+<p>`<br>最后说一句，现实中的数据肯定不会这么简单，可能会是一个稍微复杂的数据，要给这些数组去重你也不要被吓住，其实原理是一样的，只是你被迷惑了而已！</p>
+<h3 id="在一个数组中随机抽取一部分值"><a href="#在一个数组中随机抽取一部分值" class="headerlink" title="在一个数组中随机抽取一部分值"></a>在一个数组中随机抽取一部分值</h3><ul>
+<li>这个算法的关键要使用Math.random，不说了直接上代码:</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="string">`var arr = ['小明','小红','小陈','小于','小兰','小法','小p','小张','小镇','小王','傻逼','怂逼']();</span></div><div class="line"></div><div class="line">function getArr(num,array)&#123;</div><div class="line">//num表示要去多少个，它不能大于要取的那个数组的最大长度，如果超过了那么就等于它的长度</div><div class="line">var aLength = array.length;</div><div class="line">if(num\&gt;=aLength)&#123;</div><div class="line">num = aLength;</div><div class="line">&#125;;</div><div class="line">var cacheArr = []();</div><div class="line">//我们用一个数组保存原来的数组</div><div class="line">//记住千万能直接赋值，因为数组是一个引用，这样不能保持原来的数组</div><div class="line">var originArr = (function()&#123;</div><div class="line">var arr = []();</div><div class="line">for(var i = 0,len = array.length;i\&lt;len;i++)&#123;</div><div class="line">arr.push(array[i]());</div><div class="line">&#125;;</div><div class="line">return arr;</div><div class="line">&#125;)();</div><div class="line">for(var i = 0;i\&lt;num;i++)&#123;</div><div class="line">//array.length不能写成上面的aLength，因为aLength是固定的值，而array.length随着array的改变是自动更新的</div><div class="line">//Math.random() * array.length得到的是一个介于长度和零之间的一个值，包括0但不包含长度值</div><div class="line">//我们算出的是一个浮点值，所以我们必须把它转化成整数</div><div class="line">//因为不能超过最大长度值，所以应该向下取整</div><div class="line">var _index = Math.floor(Math.random() * array.length);</div><div class="line">cacheArr.push(array[_index]());</div><div class="line">//记住一定，取出来之后，一定删除原来位置上的数组值</div><div class="line">//要不然数组更新不了</div><div class="line">array.splice(_index,1);</div><div class="line">&#125;;</div><div class="line">//取回原来的数组</div><div class="line">array = originArr;</div><div class="line">console.log(array);</div><div class="line">return cacheArr;</div><div class="line">&#125;;</div><div class="line">var brr = getArr(5,arr);</div></pre></td></tr></table></figure>
+<p>`</p>
+<h3 id="得到某个区间的字母组成的数组"><a href="#得到某个区间的字母组成的数组" class="headerlink" title="得到某个区间的字母组成的数组"></a>得到某个区间的字母组成的数组</h3>
         
         </div>
         <footer class="article-footer">
@@ -262,7 +278,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="ciz94blap0006iwemcir1pkvo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/" data-id="ciz94blak0004iwemmwy47zib" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -330,7 +346,7 @@
 
             
     
-        <a href="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/">评论</a>
+        <a href="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/">评论</a>
     
 
         </footer>
@@ -339,19 +355,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/02/10/彻底理解JS中this的指向/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">上一篇</strong>
-            <div class="article-nav-title">
-                
-                    彻底理解JS中this的指向
-                
-            </div>
-        </a>
     
-    
-        <a href="/2017/02/09/以上版本「高清」方案设置/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/02/10/彻底理解JS中this的指向/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">以上版本「高清」方案设置</div>
+            <div class="article-nav-title">彻底理解JS中this的指向</div>
         </a>
     
 </nav>
@@ -551,9 +558,9 @@
     <script>
     var disqus_config = function () {
         
-            this.page.url = 'https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/';
+            this.page.url = 'https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/';
         
-        this.page.identifier = '扩展运算符的6个重要用途';
+        this.page.identifier = '缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
