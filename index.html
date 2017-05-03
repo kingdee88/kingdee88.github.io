@@ -143,11 +143,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                8
+                9
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                7
+                8
                 <span>标签</span>
             </div>
         </div>
@@ -194,6 +194,169 @@
 
             
             <section id="main">
+    <article id="post-node运维" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/05/03/node运维/">node运维</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/05/03/node运维/">
+            <time datetime="2017-05-03T05:57:46.000Z" itemprop="datePublished">2017-05-03</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/node/">node</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="远程登录服务器"><a href="#远程登录服务器" class="headerlink" title="远程登录服务器"></a>远程登录服务器</h3><ol>
+<li><p>配置root及应用账号权限</p>
+<pre><code>sudo adduser kingdee
+Enter new UNIX password: 
+sudo gpasswd -a kingdee sudo //赋予用户权限
+sudo visudo
+</code></pre><h1 id="User-privilege-specification"><a href="#User-privilege-specification" class="headerlink" title="User privilege specification"></a>User privilege specification</h1><p> root    ALL=(ALL:ALL) ALL<br> kingdee ALL=(ALL:ALL) ALL</p>
+<p> service ssh restart</p>
+</li>
+</ol>
+<ol>
+<li>配置ssh无密码登录<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;dongwenzhao@lngtop.com&quot; //生成秘钥
+eval &quot;$(ssh-agent -s)&quot; 
+ssh-add ~/.ssh/id_rsa
+cd ~/.ssh/   //进到ssh文件夹
+vi  authorized_keys
+//拷贝本地的rsa_pub  到服务器
+chmod 600 authorized_keys //修改权限
+sudo service ssh restart
+</code></pre></li>
+</ol>
+<ol>
+<li>修改服务器默认端口<pre><code>sudo  vi /etc/ssh/sshd_config
+</code></pre></li>
+</ol>
+<pre><code># What ports, IPs and protocols we listen for
+Port 22 //修改端口
+AllowUsers kingdee //添加用户
+sudo service ssh restart //重启
+
+sudo vi /etc/ssh/sshd_config
+ PermitRootLogin no  //关闭root登录
+sudo service ssh restart //重启
+</code></pre><ol>
+<li>防火墙设置<pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade //更新包
+</code></pre></li>
+</ol>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="https://kingdee88.github.io/2017/05/03/node运维/" data-id="cj28pqz4v0001evemd6ibfe3n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://kingdee88.github.io/2017/05/03/node运维/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://kingdee88.github.io/2017/05/03/node运维/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-常用文档地址" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -279,7 +442,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/03/29/常用文档地址/" data-id="cj0ubzr5u0006b0em6rgo2c0h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/03/29/常用文档地址/" data-id="cj28pqz570008evemmpc2iikw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -462,7 +625,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/22/全面解析Javascript-this/" data-id="cj0ubzr5q0005b0em0oma3b66" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/22/全面解析Javascript-this/" data-id="cj28pqz540005evemxnu260ae" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -609,7 +772,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/" data-id="cj0ubzr62000cb0emp1omwlrs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/" data-id="cj28pqz5g000devemx4v3jwks" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -872,7 +1035,7 @@ console.log(a.num); //1
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/" data-id="cj0ubzr5x0008b0emshu073wr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/" data-id="cj28pqz5e000bevemevd9udyu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1012,7 +1175,7 @@ console.log(a.num); //1
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="cj0ubzr5z000ab0emvmvmpa20" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="cj28pqz590009evem3ptcwfil" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1181,7 +1344,7 @@ gulp.task(&apos;default&apos;, [&apos;doublepx&apos;]);
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="cj0ubzr5f0001b0em3t9zkj6u" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="cj28pqz4z0003evemg4dmyaid" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1420,7 +1583,7 @@ module.exports = {
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/07/gulp和webpack的完美结合/" data-id="cj0ubzr5n0004b0emfvjkfw61" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/07/gulp和webpack的完美结合/" data-id="cj28pqz4q0000evemk6czh032" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1624,7 +1787,7 @@ module.exports = {
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/07/H5项目常见问题汇总及解决方案/" data-id="cj0ubzr5a0000b0emyyy1hszu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/07/H5项目常见问题汇总及解决方案/" data-id="cj28pqz510004evemlo4xqahf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1714,6 +1877,25 @@ module.exports = {
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/05/03/node运维/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/05/03/node运维/" class="title">node运维</a></p>
+                            <p class="item-date"><time datetime="2017-05-03T05:57:46.000Z" itemprop="datePublished">2017-05-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/03/29/常用文档地址/" class="thumbnail">
     
     
@@ -1787,25 +1969,6 @@ module.exports = {
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/02/09/扩展运算符的6个重要用途/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/02/09/扩展运算符的6个重要用途/" class="title">个重要用途</a></p>
-                            <p class="item-date"><time datetime="2017-02-09T09:12:04.000Z" itemprop="datePublished">2017-02-09</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -1824,7 +1987,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">7</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -1833,7 +1996,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷方式/">快捷方式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动/">移动</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/快捷方式/">快捷方式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动/">移动</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1842,7 +2005,7 @@ module.exports = {
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/javascript/" style="font-size: 16.67px;">javascript</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/快捷方式/" style="font-size: 10px;">快捷方式</a> <a href="/tags/技巧/" style="font-size: 13.33px;">技巧</a> <a href="/tags/效率/" style="font-size: 16.67px;">效率</a> <a href="/tags/移动/" style="font-size: 10px;">移动</a>
+            <a href="/tags/javascript/" style="font-size: 16.67px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/前端/" style="font-size: 20px;">前端</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/快捷方式/" style="font-size: 10px;">快捷方式</a> <a href="/tags/技巧/" style="font-size: 13.33px;">技巧</a> <a href="/tags/效率/" style="font-size: 16.67px;">效率</a> <a href="/tags/移动/" style="font-size: 10px;">移动</a>
         </div>
     </div>
 

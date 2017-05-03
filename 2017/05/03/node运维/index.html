@@ -3,14 +3,36 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 工具 | KD blog</title>
+    <title>node运维 | KD blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="KD blog">
-<meta property="og:url" content="https://kingdee88.github.io/tags/工具/index.html">
+    <meta name="description" content="远程登录服务器
+配置root及应用账号权限
+sudo adduser kingdee
+Enter new UNIX password: 
+sudo gpasswd -a kingdee sudo //赋予用户权限
+sudo visudo
+User privilege specification root    ALL=(ALL:ALL) ALL kingdee ALL=(ALL:ALL) ALL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node运维">
+<meta property="og:url" content="https://kingdee88.github.io/2017/05/03/node运维/index.html">
 <meta property="og:site_name" content="KD blog">
+<meta property="og:description" content="远程登录服务器
+配置root及应用账号权限
+sudo adduser kingdee
+Enter new UNIX password: 
+sudo gpasswd -a kingdee sudo //赋予用户权限
+sudo visudo
+User privilege specification root    ALL=(ALL:ALL) ALL kingdee ALL=(ALL:ALL) ALL">
+<meta property="og:updated_time" content="2017-05-03T08:20:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KD blog">
+<meta name="twitter:title" content="node运维">
+<meta name="twitter:description" content="远程登录服务器
+配置root及应用账号权限
+sudo adduser kingdee
+Enter new UNIX password: 
+sudo gpasswd -a kingdee sudo //赋予用户权限
+sudo visudo
+User privilege specification root    ALL=(ALL:ALL) ALL kingdee ALL=(ALL:ALL) ALL">
     
 
     
@@ -193,45 +215,192 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#工具</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-node运维" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/02/07/gulp和webpack的完美结合/">gulp和webpack的完美结合</a>
+        <h1 class="article-title" itemprop="name">
+            node运维
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2017/02/07/gulp和webpack的完美结合/">
-            <time datetime="2017-02-07T07:29:31.000Z" itemprop="datePublished">2017-02-07</time>
+        <a href="/2017/05/03/node运维/">
+            <time datetime="2017-05-03T05:57:46.000Z" itemprop="datePublished">2017-05-03</time>
         </a>
     </div>
 
 
-                    
-                    
+                        
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/前端/">前端</a>, <a class="tag-link" href="/tags/工具/">工具</a>
+        <a class="tag-link" href="/tags/node/">node</a>
     </div>
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h3 id="远程登录服务器"><a href="#远程登录服务器" class="headerlink" title="远程登录服务器"></a>远程登录服务器</h3><ol>
+<li><p>配置root及应用账号权限</p>
+<pre><code>sudo adduser kingdee
+Enter new UNIX password: 
+sudo gpasswd -a kingdee sudo //赋予用户权限
+sudo visudo
+</code></pre><h1 id="User-privilege-specification"><a href="#User-privilege-specification" class="headerlink" title="User privilege specification"></a>User privilege specification</h1><p> root    ALL=(ALL:ALL) ALL<br> kingdee ALL=(ALL:ALL) ALL</p>
+<p> service ssh restart</p>
+</li>
+</ol>
+<ol>
+<li>配置ssh无密码登录<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;dongwenzhao@lngtop.com&quot; //生成秘钥
+eval &quot;$(ssh-agent -s)&quot; 
+ssh-add ~/.ssh/id_rsa
+cd ~/.ssh/   //进到ssh文件夹
+vi  authorized_keys
+//拷贝本地的rsa_pub  到服务器
+chmod 600 authorized_keys //修改权限
+sudo service ssh restart
+</code></pre></li>
+</ol>
+<ol>
+<li>修改服务器默认端口<pre><code>sudo  vi /etc/ssh/sshd_config
+</code></pre></li>
+</ol>
+<pre><code># What ports, IPs and protocols we listen for
+Port 22 //修改端口
+AllowUsers kingdee //添加用户
+sudo service ssh restart //重启
+
+sudo vi /etc/ssh/sshd_config
+ PermitRootLogin no  //关闭root登录
+sudo service ssh restart //重启
+</code></pre><ol>
+<li>防火墙设置<pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade //更新包
+</code></pre></li>
+</ol>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
+
+    <a data-url="https://kingdee88.github.io/2017/05/03/node运维/" data-id="cj28pqz4v0001evemd6ibfe3n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="https://kingdee88.github.io/2017/05/03/node运维/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="https://kingdee88.github.io/2017/05/03/node运维/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/03/29/常用文档地址/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">常用文档地址</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
 </section>
             
                 <aside id="sidebar">
@@ -411,11 +580,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = 'undefined';
+            this.page.url = 'https://kingdee88.github.io/2017/05/03/node运维/';
+        
+        this.page.identifier = 'node运维';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/count.js';
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
