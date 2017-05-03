@@ -6,33 +6,27 @@
     <title>node运维 | KD blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="远程登录服务器
-配置root及应用账号权限
-sudo adduser kingdee
-Enter new UNIX password: 
-sudo gpasswd -a kingdee sudo //赋予用户权限
-sudo visudo
-  // User privilege specification root    ALL=(ALL:ALL) ALL kingdee ALL=(ALL:ALL)">
+配置root及应用账号权限1234`sudo adduser kingdeeEnter new UNIX password: sudo gpasswd -a kingdee sudo //赋予用户权限sudo visudo
+
+
+`123`// User privilege specificationroot    ALL=(ALL:ALL) ALLkingdee ALL=(ALL:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="node运维">
 <meta property="og:url" content="https://kingdee88.github.io/2017/05/03/node运维/index.html">
 <meta property="og:site_name" content="KD blog">
 <meta property="og:description" content="远程登录服务器
-配置root及应用账号权限
-sudo adduser kingdee
-Enter new UNIX password: 
-sudo gpasswd -a kingdee sudo //赋予用户权限
-sudo visudo
-  // User privilege specification root    ALL=(ALL:ALL) ALL kingdee ALL=(ALL:ALL)">
-<meta property="og:updated_time" content="2017-05-03T08:22:57.000Z">
+配置root及应用账号权限1234`sudo adduser kingdeeEnter new UNIX password: sudo gpasswd -a kingdee sudo //赋予用户权限sudo visudo
+
+
+`123`// User privilege specificationroot    ALL=(ALL:ALL) ALLkingdee ALL=(ALL:">
+<meta property="og:updated_time" content="2017-05-03T08:37:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="node运维">
 <meta name="twitter:description" content="远程登录服务器
-配置root及应用账号权限
-sudo adduser kingdee
-Enter new UNIX password: 
-sudo gpasswd -a kingdee sudo //赋予用户权限
-sudo visudo
-  // User privilege specification root    ALL=(ALL:ALL) ALL kingdee ALL=(ALL:ALL)">
+配置root及应用账号权限1234`sudo adduser kingdeeEnter new UNIX password: sudo gpasswd -a kingdee sudo //赋予用户权限sudo visudo
+
+
+`123`// User privilege specificationroot    ALL=(ALL:ALL) ALLkingdee ALL=(ALL:">
     
 
     
@@ -254,42 +248,29 @@ sudo visudo
         
             
             <h3 id="远程登录服务器"><a href="#远程登录服务器" class="headerlink" title="远程登录服务器"></a>远程登录服务器</h3><ol>
-<li><p>配置root及应用账号权限</p>
-<pre><code>sudo adduser kingdee
-Enter new UNIX password: 
-sudo gpasswd -a kingdee sudo //赋予用户权限
-sudo visudo
-</code></pre><p>  // User privilege specification<br> root    ALL=(ALL:ALL) ALL<br> kingdee ALL=(ALL:ALL) ALL</p>
-<p> service ssh restart</p>
+<li>配置root及应用账号权限<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">`sudo adduser kingdee</div><div class="line">Enter new UNIX password: </div><div class="line">sudo gpasswd <span class="_">-a</span> kingdee sudo //赋予用户权限</div><div class="line">sudo visudo</div></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>`<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">`// User privilege specification</div><div class="line">root    ALL=(ALL:ALL) ALL</div><div class="line">kingdee ALL=(ALL:ALL) ALL</div></pre></td></tr></table></figure></p>
+<p>`<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`service ssh restart</div></pre></td></tr></table></figure></p>
+<p>`</p>
 <ol>
-<li>配置ssh无密码登录<pre><code>ssh-keygen -t rsa -b 4096 -C &quot;dongwenzhao@lngtop.com&quot; //生成秘钥
-eval &quot;$(ssh-agent -s)&quot; 
-ssh-add ~/.ssh/id_rsa
-cd ~/.ssh/   //进到ssh文件夹
-vi  authorized_keys
-//拷贝本地的rsa_pub  到服务器
-chmod 600 authorized_keys //修改权限
-sudo service ssh restart
-</code></pre></li>
+<li>配置ssh无密码登录<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">`ssh-keygen -t rsa -b 4096 -C <span class="string">"dongwenzhao@lngtop.com"</span> //生成秘钥</div><div class="line"><span class="built_in">eval</span> “$(ssh-agent <span class="_">-s</span>)” </div><div class="line">ssh-add  /.ssh/idrsa</div><div class="line"><span class="built_in">cd</span> /.ssh/   //进到ssh文件夹</div><div class="line">vi  authorized_keys</div><div class="line">//拷贝本地的rsa_pub  到服务器</div><div class="line">chmod 600 authorized_keys //修改权限</div><div class="line">sudo service ssh restart</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<p>`</p>
 <ol>
-<li>修改服务器默认端口<pre><code>sudo  vi /etc/ssh/sshd_config
-</code></pre></li>
+<li>修改服务器默认端口<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`sudo  vi /etc/ssh/sshd_config_</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<pre><code># What ports, IPs and protocols we listen for
-Port 22 //修改端口
-AllowUsers kingdee //添加用户
-sudo service ssh restart //重启
-
-sudo vi /etc/ssh/sshd_config
- PermitRootLogin no  //关闭root登录
-sudo service ssh restart //重启
-</code></pre><ol>
-<li>防火墙设置<pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade //更新包
-</code></pre></li>
+<p>`<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">`// What ports, IPs and protocols we listen <span class="keyword">for</span></div><div class="line">Port 22 //修改端口</div><div class="line">AllowUsers kingdee //添加用户</div><div class="line">sudo service ssh restart //重启</div></pre></td></tr></table></figure></p>
+<p>`<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">`sudo vi /etc/ssh/sshd_config</div><div class="line">PermitRootLogin no  //关闭root登录</div><div class="line">sudo service ssh restart //重启</div></pre></td></tr></table></figure></p>
+<p>`</p>
+<ol>
+<li>防火墙设置<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`sudo apt-get update &amp;&amp; sudo apt-get upgrade //更新包</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<p>`</p>
 
         
         </div>
@@ -300,7 +281,7 @@ sudo service ssh restart //重启
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/05/03/node运维/" data-id="cj28ptkkx0003g2em6et7513z" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/05/03/node运维/" data-id="cj28pvc8d0003h2em4y5iq1nc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
