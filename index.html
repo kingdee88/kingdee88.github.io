@@ -256,6 +256,61 @@
 </li>
 </ol>
 <p>`</p>
+<h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><ol>
+<li>apt-get install redis-server</li>
+<li>安装完成后，Redis服务器会自动启动，我们检查Redis服务器程序,执行ps -aux|grep redis</li>
+<li>通过启动命令检查Redis服务器状态,执行：netstat -apn|grep 6379</li>
+<li><p>安装Redis服务器，会自动地一起安装Redis命令行客户端程序。在本机输入redis-cli命令就可以启动，客户端程序访问Redis服务器。执行：redis-cli</p>
+<p> redis-server  //启动服务<br> sudo pkill redis-server  //关闭Redis服务<br> sudo netstat -tunpl | grep 6379<br> pstree -p | grep redis<br> redis-cli </p>
+<p> sudo service redis-server restart<br> redis-server<br> redis-cli</p>
+</li>
+</ol>
+<h3 id="nvm安装各种版本的node"><a href="#nvm安装各种版本的node" class="headerlink" title="nvm安装各种版本的node"></a>nvm安装各种版本的node</h3><pre><code>$ cd ~/git
+$ git clone https://github.com/creationix/nvm.git
+source ~/git/nvm/nvm.sh
+set &quot;NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node&quot;
+set &quot;NVMW_NPMJS_COM_MIRROR=https://npm.taobao.org/mirrors/npm&quot;
+nvm install 6.0.0
+</code></pre><h3 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h3><p>upstream blog {<br>    server 127.0.0.1:8081<br>}</p>
+<p>server {<br>    listen  80;<br>    server_name  localhost;</p>
+<pre><code>location / {
+    proxy_set_header X-real-ip $remote_addr; 
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Nginx-Proxy true;
+
+    proxy_pass http://kdcould;
+    proxy_redirect off;
+}
+</code></pre><p>}</p>
+<p>hitstory模式<br>server {</p>
+<p>listen      80;</p>
+<p>server_name  localhost;</p>
+<p>index index.html;</p>
+<p>root /root/dist;</p>
+<p>location / {</p>
+<pre><code>root /root/dist;
+
+try_files $uri $uri/ /index.html =404;
+</code></pre><p>}</p>
+<p>}</p>
+<h3 id="mongodb-安装"><a href="#mongodb-安装" class="headerlink" title="mongodb  安装"></a>mongodb  安装</h3><p><a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/" target="_blank" rel="external">安装文档</a><br>修改mongo阿里云  cd /etc/apt/sources.list.d/<br>      vi mongodb-org-3.4.list<br> <a href="http://mirrors.aliyun.com/mongodb/apt/ubuntu" target="_blank" rel="external">http://mirrors.aliyun.com/mongodb/apt/ubuntu</a> trusty/mongodb-org/3.4<br>    sudo service mongod start //开启<br>    sudo service mongod stop //关闭<br>    cat /var/log/mongodb/mongod.log //查看日志</p>
+<h3 id="mongod-备份任务"><a href="#mongod-备份任务" class="headerlink" title="mongod 备份任务"></a>mongod 备份任务</h3><ol>
+<li>新建任务sh<pre><code>mkidr tasks
+vim blog.backup.sh
+</code></pre></li>
+</ol>
+<p>#!/bin/sh</p>
+<p>backUpFolder=/home/kingdee/backup/<br>date<em>now=`date +%Y</em>%m<em>%d</em>%H%M`<br>backFileName=blog_$date_now</p>
+<p>cd $backUpFolder<br>mkdir -p $backFileName</p>
+<p>mongodump -h 127.0.0.1:27017 -d kd  -o $backFileName</p>
+<p>tar zcvf $backFileName.tar.gz $backFileName</p>
+<p>rm -rf $backFileName</p>
+<ol>
+<li><p>执行定时备份任务</p>
+<p> crontab -e<br> 04 10 <em> </em> * sh /home/kingdee/tasks/blog.backup.sh //任务执行时间</p>
+</li>
+</ol>
 
         
         </div>
@@ -266,7 +321,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/05/03/node运维/" data-id="cj28pvc8d0003h2em4y5iq1nc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/05/03/node运维/" data-id="cj2fhryfs0000f6em65z16fhj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -429,7 +484,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/03/29/常用文档地址/" data-id="cj28pvc8l0008h2emfv4a8stv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/03/29/常用文档地址/" data-id="cj2fhryg90009f6em4shfxo10" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -612,7 +667,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/22/全面解析Javascript-this/" data-id="cj28pvc8i0006h2embqhwbbsl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/22/全面解析Javascript-this/" data-id="cj2fhryg70006f6emo1z0q6zs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -759,7 +814,7 @@
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/" data-id="cj28pvc8t000eh2emlw798nbl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/17/缓存算法，数组去重、数组随机抽取、字母串转数字，数字转字符串/" data-id="cj2fhryga000af6em8562og9c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1022,7 +1077,7 @@ console.log(a.num); //1
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/" data-id="cj28pvc8n0009h2emri03ksds" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/10/彻底理解JS中this的指向/" data-id="cj2fhrygg000ef6emlzq9o1ta" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1162,7 +1217,7 @@ console.log(a.num); //1
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="cj28pvc8s000ch2emxmehsf7z" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/扩展运算符的6个重要用途/" data-id="cj2fhrygd000cf6em9gahu8b4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1331,7 +1386,7 @@ gulp.task(&apos;default&apos;, [&apos;doublepx&apos;]);
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="cj28pvc8g0005h2emz3h8rn4h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/09/以上版本「高清」方案设置/" data-id="cj2fhryg40004f6emny0y8p53" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1570,7 +1625,7 @@ module.exports = {
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/07/gulp和webpack的完美结合/" data-id="cj28pvc830000h2emruhqy7uk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/07/gulp和webpack的完美结合/" data-id="cj2fhryfx0001f6em163djtjl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1774,7 +1829,7 @@ module.exports = {
 
 </div>
 
-    <a data-url="https://kingdee88.github.io/2017/02/07/H5项目常见问题汇总及解决方案/" data-id="cj28pvc880001h2emmmb2i1tz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https://kingdee88.github.io/2017/02/07/H5项目常见问题汇总及解决方案/" data-id="cj2fhryg20003f6em0ylds4za" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
